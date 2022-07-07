@@ -1,0 +1,7 @@
+#search_textfield {
+    -fx-text-fill: #ffffff;
+}
+#top_bar {
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0;
+}

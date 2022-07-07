@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefHeight="68.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.friends_menu.FriendsMenuController">
+   <children>
+      <HBox prefHeight="69.0" prefWidth="942.0" style="-fx-alignment: center-left;">
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin>
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../icons/Friends.png" />
+               </image>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 23;" text="Friends">
+               <HBox.margin>
+                  <Insets left="8.0" />
+               </HBox.margin>
+            </Text>
+            <Line endX="-59.81425857543945" endY="20.475595474243164" rotate="63.0" startX="-100.0" stroke="#4c4e54" strokeWidth="2.0">
+               <HBox.margin>
+                  <Insets left="5.0" right="8.0" />
+               </HBox.margin>
+            </Line>
+            <Button fx:id="online_button" mnemonicParsing="false" style="-fx-background-radius: 5; -fx-alignment: center; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #36393f; -fx-graphic-text-gap: 15;" text="Online">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="all_button" layoutX="184.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-radius: 5; -fx-alignment: center; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #36393f; -fx-graphic-text-gap: 15;" text="All">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="pending_button" layoutX="304.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-radius: 5; -fx-alignment: center; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #36393f; -fx-graphic-text-gap: 15;" text="Pending">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="blocked_button" layoutX="424.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-radius: 5; -fx-alignment: center; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #36393f; -fx-graphic-text-gap: 15;" text="Blocked">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="add_friend_button" layoutX="544.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-radius: 5; -fx-alignment: center; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #3ba55d; -fx-graphic-text-gap: 15;" text="Add Friend" />
+         </children>
+      </HBox>
+      <HBox prefHeight="69.0" prefWidth="326.0" style="-fx-alignment: center-right;">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin>
+         <children>
+            <ImageView fx:id="inbox_image" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../icons/inobx.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</HBox>

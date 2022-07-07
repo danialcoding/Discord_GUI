@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="800.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox prefHeight="70.0" prefWidth="1212.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="68.0" prefWidth="385.0" style="-fx-background-color: #2f3136;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <VBox prefHeight="68.0" prefWidth="169.0" style="-fx-alignment: center-left;">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 23;" text="Server name" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="68.0" prefWidth="159.0" style="-fx-alignment: center-right;">
+                     <VBox.margin>
+                        <Insets right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets right="15.0" />
+                           </VBox.margin>
+                           <image>
+                              <Image url="@../../icons/bottom.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="68.0" prefWidth="1141.0" style="-fx-background-color: #36393f;">
+               <children>
+                  <HBox prefHeight="68.0" prefWidth="510.0" style="-fx-alignment: center-left;">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/hashtag.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 23;" text="channel name">
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="68.0" prefWidth="575.0" style="-fx-alignment: center-right;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../../icons/pin.png" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="100.0" prefWidth="230.0" style="-fx-alignment: center-right; -fx-background-color: #202225; -fx-background-radius: 5;">
+                           <HBox.margin>
+                              <Insets bottom="15.0" right="20.0" top="15.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
+                           <children>
+                              <TextField prefHeight="31.0" prefWidth="192.0" promptText="Search" style="-fx-background-color: #202225;">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons/search.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/inobx.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="726.0" prefWidth="330.0" style="-fx-background-color: #2f3136;" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="708.0" prefWidth="330.0" style="-fx-background-color: #2f3136; -fx-border-color: #2f3136;">
+               <content>
+                  <VBox prefHeight="708.0" prefWidth="330.0" style="-fx-background-color: #2f3136;" />
+               </content>
+            </ScrollPane>
+            <HBox prefHeight="86.0" prefWidth="330.0" style="-fx-background-color: #292b2f; -fx-alignment: center-left;">
+               <padding>
+                  <Insets left="5.0" right="15.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="70.0">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                     <children>
+                        <Circle fill="DODGERBLUE" layoutX="30.0" layoutY="30.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle fill="#292b2f" layoutX="42.0" layoutY="49.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle fill="#06ff44" layoutX="42.0" layoutY="49.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <VBox prefHeight="91.0" prefWidth="135.0" style="-fx-alignment: center-left;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 18;" text="Charonx_007" />
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../icons/mic.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="225.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../icons/headphone.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="250.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../icons/setting.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #36393f;" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="676.0" prefWidth="755.0" style="-fx-background-color: #36393f;">
+               <content>
+                  <VBox style="-fx-background-color: #36393f;" />
+               </content>
+            </ScrollPane>
+            <HBox prefHeight="53.0" prefWidth="690.0" style="-fx-background-radius: 10; -fx-background-color: #40444b; -fx-alignment: center-left;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons/plus.png" />
+                     </image>
+                  </ImageView>
+                  <TextField prefHeight="35.0" prefWidth="480.0" style="-fx-background-color: #40444b;">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="450.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="485.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="330.0" style="-fx-background-color: #2f3136;" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="780.0" prefWidth="291.0" style="-fx-background-color: #2f3136;" />
+         </content>
+      </ScrollPane>
+   </right>
+</BorderPane>

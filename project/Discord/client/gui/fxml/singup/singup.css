@@ -1,0 +1,12 @@
+#pane {
+    -fx-background-image: url("../../backgrounds/singup.jpg") !important;
+}
+
+#email_text_field, #username_text_field, #password_text_field {
+    -fx-text-fill: #FFFFFFFF;
+}
+
+#singup_text :hover {
+    -fx-cursor: pointer;
+    -fx-underline: #192173;
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+
+<HBox fx:id="menu_load_hbox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.MenuController">
+   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="800.0" prefWidth="90.0" style="-fx-background-color: #202225;">
+      <VBox prefHeight="800.0" prefWidth="90.0" style="-fx-background-color: #202225; -fx-alignment: top-center;">
+         <padding>
+            <Insets top="15.0" />
+         </padding>
+         <AnchorPane prefHeight="70.0" prefWidth="70.0">
+            <VBox.margin>
+               <Insets bottom="15.0" />
+            </VBox.margin>
+            <Circle fill="#36393f" layoutX="42.0" layoutY="35.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="home_button" fill="#36393f" layoutX="42.0" layoutY="35.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+         </AnchorPane>
+         <Line endX="-52.5" scaleY="3.0" startX="-100.0" stroke="#36393f" />
+         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="850.0" prefWidth="83.0" style="-fx-background-color: #202225; -fx-border-color: #202225;">
+            <VBox.margin>
+               <Insets top="12.0" />
+            </VBox.margin>
+            <VBox fx:id="servers_vbox" prefHeight="850.0" prefWidth="83.0" style="-fx-background-color: #202225; -fx-alignment: top-center;" />
+         </ScrollPane>
+      </VBox>
+   </ScrollPane>
+</HBox>

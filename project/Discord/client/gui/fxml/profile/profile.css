@@ -1,0 +1,23 @@
+#edit_user_profile_button, #change_password_button, #logout_button {
+    -fx-padding: 8px 15px 8px 15px;
+}
+
+#edit_username_button, #edit_phone_button, #edit_email_button {
+    -fx-padding: 8px 20px 8px 20px;
+}
+
+#change_password_button {
+    -fx-min-height: 40;
+}
+
+#logout_button {
+    -fx-min-height: 40;
+}
+
+#exit_button {
+    -fx-padding: 8px 20px 8px 20px;
+}
+
+#panel .scroll-bar {
+    -fx-background-color: #2e3338;
+}

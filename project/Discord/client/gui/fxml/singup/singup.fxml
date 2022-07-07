@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" stylesheets="@singup.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.singup.SingUpController">
+    <children>
+        <VBox layoutX="525.0" layoutY="125.0" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: #36393f; -fx-alignment: center;">
+            <children>
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-origin: center; -fx-font-weight: bold; -fx-text-alignment: center; -fx-font-size: 32; -fx-fill: WHITE;" text="Create an account">
+                    <VBox.margin>
+                        <Insets bottom="50.0" />
+                    </VBox.margin>
+                </Text>
+                <VBox prefHeight="20.0">
+                    <children>
+                        <Text fx:id="email_text" fill="#9a9a9a" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18;" text="EMAIL">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="30.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+                <TextField fx:id="email_text_field" prefHeight="45.0" style="-fx-background-radius: 5; -fx-background-color: #202225; -fx-font-size: 18;">
+                    <VBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="30.0" />
+                    </VBox.margin>
+                </TextField>
+                <VBox layoutX="10.0" layoutY="141.0" prefHeight="20.0">
+                    <children>
+                        <Text fx:id="username_text" fill="#9a9a9a" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18;" text="USERNAME">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="30.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+                <TextField fx:id="username_text_field" layoutX="40.0" layoutY="312.0" prefHeight="45.0" style="-fx-background-radius: 5; -fx-background-color: #202225; -fx-font-size: 18;">
+                    <VBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="30.0" />
+                    </VBox.margin>
+                </TextField>
+                <VBox layoutX="10.0" layoutY="243.0" prefHeight="20.0">
+                    <children>
+                        <Text fx:id="password_text" fill="#9a9a9a" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18;" text="PASSWORD">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="30.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+                <TextField fx:id="password_text_field" layoutX="10.0" layoutY="362.0" prefHeight="45.0" style="-fx-background-radius: 5; -fx-background-color: #202225; -fx-font-size: 18;">
+                    <VBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="30.0" />
+                    </VBox.margin>
+                </TextField>
+                <VBox layoutX="10.0" layoutY="345.0" prefHeight="20.0">
+                    <children>
+                        <CheckBox fx:id="agree_checkbox" mnemonicParsing="false" style="-fx-text-fill: WHITE; -fx-font-size: 16;" text="I have read and agree to discord's terms of service.">
+                            <VBox.margin>
+                                <Insets left="30.0" top="20.0" />
+                            </VBox.margin>
+                        </CheckBox>
+                    </children>
+                </VBox>
+                <Button fx:id="singup_button" maxWidth="600.0" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #5865f2; -fx-font-size: 18; -fx-font-weight: bold; -fx-border-radius: 5; -fx-alignment: CENTER; -fx-text-fill: WHITE;" text="Continue">
+                    <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="12.0" />
+                    </VBox.margin>
+                </Button>
+                <VBox layoutX="10.0" layoutY="334.0" prefHeight="20.0">
+                    <children>
+                        <Text fx:id="login_text" fill="#9a9a9a" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-fill: #04a6e6;" text="Already have an account?">
+                            <VBox.margin>
+                                <Insets left="30.0" top="5.0" />
+                            </VBox.margin>
+                        </Text>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</Pane>

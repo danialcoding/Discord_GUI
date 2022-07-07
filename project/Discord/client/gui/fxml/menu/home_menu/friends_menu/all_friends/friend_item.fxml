@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefHeight="76.0" prefWidth="330.0" style="-fx-alignment: center-left;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets left="5.0" right="15.0" />
+   </padding>
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="70.0">
+         <HBox.margin>
+            <Insets top="5.0" />
+         </HBox.margin>
+         <children>
+            <Circle fill="#3ba55c" layoutX="29.0" layoutY="30.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="profile_photo_circle" fill="#3ba55c" layoutX="29.0" layoutY="30.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#292b2f" layoutX="42.0" layoutY="49.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="status_circle" fill="#06ff44" layoutX="42.0" layoutY="49.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+         </children>
+      </AnchorPane>
+      <VBox prefHeight="76.0" prefWidth="189.0" style="-fx-alignment: center-left;">
+         <children>
+            <Text fx:id="username_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #898b90; -fx-font-weight: bold; -fx-font-size: 18;" text="Charonx_007" />
+         </children>
+      </VBox>
+   </children>
+</HBox>
