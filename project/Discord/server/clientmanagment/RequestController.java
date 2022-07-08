@@ -122,6 +122,7 @@ public class RequestController implements Runnable {
 
 
 
+                case "user/friend-request-obg" -> clientServices.getFriendRequestObject();
 
                 case "user" -> clientServices.getUserObject();
 

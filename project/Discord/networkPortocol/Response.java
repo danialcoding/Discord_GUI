@@ -3,6 +3,7 @@ package project.Discord.networkPortocol;
 import project.Discord.server.Server;
 import project.Discord.server.clientmanagment.Flag;
 import project.Discord.server.entity.DiscordServer;
+import project.Discord.server.entity.FriendRequest;
 import project.Discord.server.entity.PrivateChat;
 import project.Discord.server.entity.User;
 
@@ -25,7 +26,9 @@ public class Response implements Serializable {
 
     private User user;
 
+    private ArrayList<FriendRequest> friendRequests;
 
+    private FriendRequest friendRequest;
 
     public Response() {
         texts = new ArrayList<>();
@@ -57,6 +60,22 @@ public class Response implements Serializable {
 
     public User getUser() {
         return user;
+    }
+
+    public ArrayList<FriendRequest> getFriendRequests() {
+        return friendRequests;
+    }
+
+    public FriendRequest getFriendRequest() {
+        return friendRequest;
+    }
+
+    public void setFriendRequest(FriendRequest friendRequest) {
+        this.friendRequest = friendRequest;
+    }
+
+    public void setFriendRequests(ArrayList<FriendRequest> friendRequests) {
+        this.friendRequests = friendRequests;
     }
 
     public void setPrivateChats(ArrayList<PrivateChat> privateChats) {

@@ -460,8 +460,12 @@ public class ClientServices {
 
         Response response = new Response();
 
-        if(friend.getUserName().equals(controller.getUser().getUserName())) {
-            response.addText("You can't send friend request for own!");
+        System.out.println(friend.getFriends());
+
+        System.out.println(controller.getUser().getFriends());
+
+        if(friend == null) {
+            response.addText("User not found!");
 
             response.setFlag(Flag.NotSuccessful);
 
@@ -469,8 +473,8 @@ public class ClientServices {
             return;
         }
 
-        if(friend == null) {
-            response.addText("User not found!");
+        if(friend.getUserName().equals(controller.getUser().getUserName())) {
+            response.addText("You can't send friend request for own!");
 
             response.setFlag(Flag.NotSuccessful);
 
@@ -487,7 +491,7 @@ public class ClientServices {
             return;
         }
 
-        if(checkFriendExistInUserFriendRequests(friend)) {
+        if(checkFriendExistInUserFriendRequestsgui(friend)) {
             response.addText("You have already sent a friend request to this user!");
 
             response.setFlag(Flag.NotSuccessful);
@@ -499,10 +503,11 @@ public class ClientServices {
         sendNotification("New friend request","New friend request from " +
                 controller.getUser().getUserName() + " added to your friend request list.",friend.getUserName());
 
-
         FriendRequest friendRequest = new FriendRequest(controller.getUser(),friend);
 
         friend.getFriendRequests().add(friendRequest);
+
+        controller.getUser().getFriendRequests().add(friendRequest);
 
         response.addText("Friend request successfully send.");
 
@@ -524,6 +529,26 @@ public class ClientServices {
             if(fr.getGetter().getUserName().equals(friend.getUserName())) {
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    /**
+     * @Author danial
+     * @param  friend
+     * @return Boolean
+     * check Friend Exist In User Friend Requests
+     */
+    public Boolean checkFriendExistInUserFriendRequestsgui(User friend) {
+        ArrayList<FriendRequest> friendRequests = controller.getUser().getFriendRequests();
+
+        int index = 0;
+        for (FriendRequest fr : friendRequests) {
+            if(fr.getGetter().getUserName().equals(friend.getUserName())) {
+                return true;
+            }
+            ++index;
         }
 
         return false;
@@ -573,6 +598,20 @@ public class ClientServices {
 
     }
 
+    public void searchAndRemovefriendRequest(User Friend,User user) {
+        ArrayList<FriendRequest> friendRequests =  Friend.getFriendRequests();
+
+        int index = 0;
+
+        for (FriendRequest fr : friendRequests) {
+            if(fr.getSender().getUserName().equals(user.getUserName()) || fr.getGetter().getUserName().equals(user.getUserName())) {
+                Friend.getFriendRequests().remove(index);
+                return;
+            }
+            ++index;
+        }
+    }
+
     /**
      * @Author danial
      * @param  index
@@ -581,15 +620,33 @@ public class ClientServices {
      * user accept add friend request sender to user friend
      */
     public void updateFriendRequestsList(int index,String action) {
-        index = index - 1;
-
         Response response = new Response();
+
+        User user = controller.getUser();
+
+        FriendRequest friendRequest = user.getFriendRequests().get(index);
+
+        User friend;
+
+        if (friendRequest.getSender().getUserName().equals(user.getUserName())) {
+            friend = friendRequest.getGetter();
+        }
+        else {
+            friend = friendRequest.getSender();
+        }
+
+        System.out.println(friend.getFriends());
+
+        System.out.println(controller.getUser().getFriends());
 
         switch (action) {
             case "accept" -> {
-                User friend = controller.getUser().getFriendRequests().get(index).getSender();
+                sendNotification("Friend request accepted","Friend request accepted from " +
+                        controller.getUser().getUserName() + ".",friend.getUserName());
 
                 controller.getUser().getFriendRequests().remove(index);
+
+                searchAndRemovefriendRequest(friend,user);
 
                 controller.getUser().getFriends().add(friend);
 
@@ -599,11 +656,34 @@ public class ClientServices {
             }
 
             case "reject" -> {
+                sendNotification("Friend request rejected","Friend request rejected from " +
+                        controller.getUser().getUserName() + ".",friend.getUserName());
+
                 controller.getUser().getFriendRequests().remove(index);
+
+                searchAndRemovefriendRequest(friend,user);
 
                 response.addText("User successfully removed from your friend requests.");
             }
         }
+        controller.sendResponse(response);
+    }
+
+    /**
+     * @Author danial
+     * get all friend request object
+     */
+    public void getFriendRequestObject() {
+        ArrayList<FriendRequest> friendRequests = controller.getUser().getFriendRequests();
+
+        Response response = new Response();
+
+        response.setFriendRequests(friendRequests);
+
+        if(friendRequests.size() != 0) {
+            response.setFriendRequest(friendRequests.get(friendRequests.size() - 1));
+        }
+
         controller.sendResponse(response);
     }
 

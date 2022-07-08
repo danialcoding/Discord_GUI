@@ -1,4 +1,5 @@
 package project.Discord.client;
+
 import project.Discord.server.clientmanagment.Flag;
 import project.Discord.networkPortocol.Response;
 
@@ -23,7 +24,7 @@ public class ResponseHandler implements Runnable {
 
     public void setResponse(Response response) {
         this.response = response;
-        if(response.getFlag()!=null){
+        if(response.getFlag() != null){
             flag = response.getFlag();
         }
     }

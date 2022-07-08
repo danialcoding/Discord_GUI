@@ -3,12 +3,10 @@ package project.Discord.client;
 import project.Discord.networkPortocol.ObjectRequested;
 import project.Discord.networkPortocol.Request;
 import project.Discord.networkPortocol.RequestType;
+import project.Discord.networkPortocol.Response;
 import project.Discord.server.Server;
 import project.Discord.server.clientmanagment.Flag;
-import project.Discord.server.entity.DiscordServer;
-import project.Discord.server.entity.PrivateChat;
-import project.Discord.server.entity.Status;
-import project.Discord.server.entity.User;
+import project.Discord.server.entity.*;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -272,19 +270,6 @@ public class GraphicalInterface {
 
         return servers;
     }
-    /*
-    ArrayList<String> serversName = getAllTexts();
-
-        for (int i = 0; i < serversName.size(); i++) {
-            request = new Request(RequestType.GET,ObjectRequested.SERVER,"server/photo");
-
-            request.addContent("index", String.valueOf(i));
-
-            sendRequest(request);
-
-            servers.add(new DiscordServer(serversName.get(i),responseHandler.getFile()));
-        }
-    */
 
     /**
      * @Author danial
@@ -306,74 +291,33 @@ public class GraphicalInterface {
 
         return friends;
     }
-    /*
-    public ArrayList<User> loadFriends() {
-        ArrayList<String> friendsName = new ArrayList<>();
 
-        Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/friends-username");
-
-        sendRequest(request);
-
-        friendsName = getAllTexts();
-
-        ArrayList<String> friendsStatus = new ArrayList<>();
-
-        request = new Request(RequestType.GET,ObjectRequested.USER,"user/friends-status");
+    /**
+     * @Author danial
+     * @return ArrayList<FriendRequest>
+     * load all friend request
+     */
+    public ArrayList<FriendRequest> loadFriendRequest() {
+        Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/friend-request-obg");
 
         sendRequest(request);
 
-        friendsStatus = getAllTexts();
+        Response response = responseHandler.getResponse();
 
+        ArrayList<FriendRequest> friendRequests = response.getFriendRequests();
 
-        ArrayList<byte[]> friendsPhoto = new ArrayList<>();
-
-        for (int i = 0; i < friendsName.size(); i++) {
-            request = new Request(RequestType.GET,ObjectRequested.USER,"user/photo");
-
-            request.addContent("index", String.valueOf(i));
-
-            sendRequest(request);
-
-            Flag flag = responseHandler.getFlag();
-
-            if(flag == Flag.Successful) {
-                friendsPhoto.add(responseHandler.getFile());
-            }
-            else {
-                friendsPhoto.add(null);
-            }
+        if(response.getFriendRequest() != null) {
+            friendRequests.add(response.getFriendRequest());
+            response.setFriendRequest(null);
         }
 
-        ArrayList<User> friends = new ArrayList<>();
 
-        for (int i = 0; i < friendsName.size(); i++) {
-
-            User user = new User(friendsName.get(i),"","","");
-
-            switch (friendsStatus.get(i)) {
-                case "OFFLINE" -> user.setStatus(Status.OFFLINE);
-                case "ONLINE" -> user.setStatus(Status.ONLINE);
-                case "IDLE" -> user.setStatus(Status.IDLE);
-                case "DO_NOT_DISTURB" -> user.setStatus(Status.DO_NOT_DISTURB);
-                case "INVISIBLE" -> user.setStatus(Status.INVISIBLE);
-            }
-
-            if(friendsPhoto.get(i) != null) {
-                user.setHavePhoto(true);
-
-                user.setUserPhoto(friendsPhoto.get(i));
-            }
-            else {
-                user.setHavePhoto(false);
-
-                user.setUserPhoto(null);
-            }
-
-            friends.add(user);
+        if (friendRequests == null) {
+            return new ArrayList<>();
         }
 
-        return friends;
-    }*/
+        return friendRequests;
+    }
 
     /**
      * @Author danial
@@ -409,5 +353,49 @@ public class GraphicalInterface {
         User user = responseHandler.getResponse().getUser();
 
         return user;
+    }
+
+    /**
+     * @Author danial
+     * show friend request
+     */
+    public GraphicInputStatus addFriend(String userName) {
+        userName = userName.toLowerCase();
+
+        InputStatus userNameStatus = userNameChecker(userName);
+
+        if(userNameStatus == InputStatus.FormatError) {
+            return GraphicInputStatus.UserNameFormatError;
+        }
+
+        Request request = new Request(RequestType.POST,ObjectRequested.USER,"user/send-friend-request");
+
+        request.addContent("username",userName);
+
+        sendRequest(request);
+
+        Flag flag = responseHandler.getFlag();
+
+        if(flag == Flag.NotSuccessful) {
+            return GraphicInputStatus.NotSuccessful;
+        }
+        else {
+            return GraphicInputStatus.Successful;
+        }
+    }
+
+    /**
+     * @Author danial
+     * show friend request
+     */
+    public void pendingFriendRequest(String userAction,int index) {
+
+        Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/update-friend-request");
+
+        request.addContent("index", String.valueOf(index));
+
+        request.addContent("action",userAction);
+
+        sendRequest(request);
     }
 }

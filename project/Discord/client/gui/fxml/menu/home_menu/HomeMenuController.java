@@ -17,11 +17,11 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import project.Discord.client.GraphicalInterface;
-import project.Discord.client.gui.fxml.menu.PlusItemController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.FriendsMenuController;
+import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
+import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.pending.PendingController;
 import project.Discord.server.entity.PrivateChat;
 import project.Discord.server.entity.User;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -42,9 +42,6 @@ public class HomeMenuController implements Initializable {
     private HBox top_bar;
 
     @FXML
-    private HBox friends_menu_hbox;
-
-    @FXML
     private TextField search_textfield;
 
     @FXML
@@ -58,6 +55,10 @@ public class HomeMenuController implements Initializable {
 
     @FXML
     private Text username_text;
+
+    @FXML
+    private Pane friends_menu_pane;
+
 
     public void setData(GraphicalInterface graphicalInterface) {
         this.graphicalInterface = graphicalInterface;
@@ -92,6 +93,8 @@ public class HomeMenuController implements Initializable {
                 FriendsMenuController fmc = fxmlLoader.getController();
 
                 fmc.setData(graphicalInterface);
+
+                fmc.setParentController(HomeMenuController.this);
 
                 top_bar.getChildren().set(1,root);
             }
@@ -198,5 +201,58 @@ public class HomeMenuController implements Initializable {
         ImagePattern imagePattern = new ImagePattern((img));
 
         user_status_circle.setFill(imagePattern);
+    }
+
+    public void loadFriendsMenuVbox(String id) {
+
+        switch (id) {
+            case "online_button" -> {
+
+            }
+            case "all_button" -> {
+
+            }
+            case "pending_button" -> {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+
+                fxmlLoader.setLocation(PendingController.class.getResource("pending.fxml"));
+
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                PendingController pc = fxmlLoader.getController();
+
+                pc.setData(graphicalInterface);
+
+                pc.loadPendings();
+
+                friends_menu_pane.getChildren().set(0,root);
+            }
+            case "blocked_button" -> {
+
+            }
+            case "add_friend_button" -> {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+
+                fxmlLoader.setLocation(AddFriendController.class.getResource("add_friend.fxml"));
+
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                AddFriendController afc = fxmlLoader.getController();
+
+                afc.setData(graphicalInterface);
+
+                friends_menu_pane.getChildren().set(0,root);
+            }
+        }
     }
 }

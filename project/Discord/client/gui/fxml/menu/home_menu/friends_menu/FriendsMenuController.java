@@ -1,25 +1,22 @@
 package project.Discord.client.gui.fxml.menu.home_menu.friends_menu;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.paint.Color;
 import project.Discord.client.GraphicalInterface;
+import project.Discord.client.gui.fxml.menu.home_menu.HomeMenuController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static javafx.scene.paint.Color.rgb;
-
 public class FriendsMenuController implements Initializable {
 
     private GraphicalInterface graphicalInterface;
+
+    private HomeMenuController hmc;
 
     @FXML
     private Button online_button;
@@ -42,6 +39,11 @@ public class FriendsMenuController implements Initializable {
 
     public void setData(GraphicalInterface graphicalInterface) {
         this.graphicalInterface = graphicalInterface;
+
+    }
+
+    public void setParentController(HomeMenuController hmc) {
+        this.hmc = hmc;
     }
 
     @Override
@@ -122,6 +124,7 @@ public class FriendsMenuController implements Initializable {
                 blocked_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,hover);
             }
         }
+        hmc.loadFriendsMenuVbox(id);
     }
 
     public void hover(Button btn) {

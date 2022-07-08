@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
@@ -40,7 +41,7 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox fx:id="friends_menu_hbox" prefHeight="68.0" prefWidth="1090.0" />
+            <HBox prefHeight="68.0" prefWidth="1090.0" />
          </children>
       </HBox>
    </top>
@@ -143,6 +144,14 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="760.0" style="-fx-background-color: #36393f;" BorderPane.alignment="CENTER" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f; -fx-border-color: #36393f;" BorderPane.alignment="CENTER">
+         <content>
+            <Pane fx:id="friends_menu_pane" prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f;">
+               <children>
+                  <Pane prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" />
+               </children>
+            </Pane>
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>
