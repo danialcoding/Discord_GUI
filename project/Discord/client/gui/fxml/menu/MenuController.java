@@ -113,7 +113,7 @@ public class MenuController implements Initializable {
 
         User user = graphicalInterface.loadUser();
 
-        hmc.setPageInformation(privateChats,user);
+        hmc.loadPrivateChats(privateChats,user);
 
         hmc.setUserData(user);
 

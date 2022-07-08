@@ -1,4 +1,4 @@
-package project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend;
+package project.Discord.client.gui.fxml.menu.home_menu.chat;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+public class BlockedErrorController implements Initializable {
 
-public class InvalidUsernameController implements Initializable {
     @FXML
     private Button close_button;
 

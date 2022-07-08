@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" stylesheets="@../add_friend/add_friend.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.friends_menu.all_friends.AllFriendsController">
+   <padding>
+      <Insets left="35.0" right="35.0" top="20.0" />
+   </padding>
+   <children>
+      <Text fx:id="topic_text" layoutX="45.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: b0b2b5; -fx-font-size: 18; -fx-font-weight: bold;" text="ALL FRIENDS">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </Text>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="650.0" prefWidth="1020.0" style="-fx-background-color: #36393f; -fx-border-color: #36393f;">
+         <content>
+            <VBox fx:id="friends_menu_vbox" alignment="TOP_CENTER" prefHeight="650.0" prefWidth="1020.0" style="-fx-background-color: #36393f;">
+               <children>
+                  <VBox prefHeight="650.0" prefWidth="1020.0" />
+               </children>
+            </VBox>
+         </content>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </ScrollPane>
+   </children>
+</VBox>

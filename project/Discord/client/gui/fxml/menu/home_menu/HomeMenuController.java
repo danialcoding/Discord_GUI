@@ -17,9 +17,13 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import project.Discord.client.GraphicalInterface;
+import project.Discord.client.gui.fxml.menu.home_menu.chat.ChatController;
+import project.Discord.client.gui.fxml.menu.home_menu.chat.ChatTopBarController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.FriendsMenuController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
+import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.all_friends.AllFriendsController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.pending.PendingController;
+import project.Discord.server.entity.Message;
 import project.Discord.server.entity.PrivateChat;
 import project.Discord.server.entity.User;
 import javax.imageio.ImageIO;
@@ -117,7 +121,7 @@ public class HomeMenuController implements Initializable {
         });
     }
 
-    public void setPageInformation(ArrayList<PrivateChat> privateChats,User user) {
+    public void loadPrivateChats(ArrayList<PrivateChat> privateChats,User user) {
         for (int i = 0; i < privateChats.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -210,7 +214,24 @@ public class HomeMenuController implements Initializable {
 
             }
             case "all_button" -> {
+                FXMLLoader fxmlLoader = new FXMLLoader();
 
+                fxmlLoader.setLocation(AllFriendsController.class.getResource("all_friends.fxml"));
+
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                AllFriendsController afc = fxmlLoader.getController();
+
+                afc.setdata(graphicalInterface,this);
+
+                afc.loadAllfriends();
+
+                friends_menu_pane.getChildren().set(0,root);
             }
             case "pending_button" -> {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -254,5 +275,46 @@ public class HomeMenuController implements Initializable {
                 friends_menu_pane.getChildren().set(0,root);
             }
         }
+    }
+
+
+    public void loadPrivateChat(User friend) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        fxmlLoader.setLocation(ChatTopBarController.class.getResource("chat_top_bar.fxml"));
+
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ChatTopBarController ctb = fxmlLoader.getController();
+
+        ctb.setData(friend);
+
+        top_bar.getChildren().set(1,root);
+
+
+
+        FXMLLoader fxmlLoader1 = new FXMLLoader();
+
+        fxmlLoader1.setLocation(ChatController.class.getResource("chat.fxml"));
+
+        Parent root1 = null;
+        try {
+            root1 = fxmlLoader1.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ChatController cc = fxmlLoader1.getController();
+
+        cc.setData(graphicalInterface);
+
+        cc.loadMessages(friend.getUserName());
+
+        friends_menu_pane.getChildren().set(0,root1);
     }
 }

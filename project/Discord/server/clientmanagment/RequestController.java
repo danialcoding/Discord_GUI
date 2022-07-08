@@ -131,6 +131,10 @@ public class RequestController implements Runnable {
                 case "user/servers-obg" -> clientServices.getUserServersObject();
 
                 case "user/private-chat-obg" -> clientServices.getUserPrivateChats();
+
+                case "user/get-selected-user" -> clientServices.getSelectedUser(r.getContent().get("username"));
+
+                case "user/check-exist-create-privateChat-with-userName" -> clientServices.checkExistPrivateChatWithUserName(r.getContent().get("username"));
             }
 
         } else if (objectRequested == ObjectRequested.SERVER) {

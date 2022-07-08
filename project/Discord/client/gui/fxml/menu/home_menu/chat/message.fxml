@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefHeight="80.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.chat.MessageController">
+   <children>
+      <HBox fx:id="main_hbox" prefHeight="76.0" prefWidth="1020.0" style="-fx-alignment: center-left;">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="70.0">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+               <children>
+                  <Circle fill="#3ba55c" layoutX="29.0" layoutY="30.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fx:id="profile_photo_circle" fill="#3ba55c" layoutX="29.0" layoutY="30.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+               </children>
+            </AnchorPane>
+            <VBox prefHeight="80.0" prefWidth="945.0" style="-fx-alignment: center-left;">
+               <children>
+                  <HBox prefHeight="26.0" prefWidth="189.0">
+                     <children>
+                        <Text fx:id="username_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 18;" text="Charonx_007">
+                           <HBox.margin>
+                              <Insets right="12.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="date_text" fill="#808080" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 15;" text="date" />
+                     </children>
+                  </HBox>
+                  <Text fx:id="message_text" layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #dcddde; -fx-font-weight: bold; -fx-font-size: 17;" text="message">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</HBox>

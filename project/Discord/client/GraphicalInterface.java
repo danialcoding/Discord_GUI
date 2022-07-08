@@ -10,6 +10,8 @@ import project.Discord.server.entity.*;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -397,4 +399,58 @@ public class GraphicalInterface {
 
         sendRequest(request);
     }
+
+    /**
+     * @Author danial
+     * load Selected User
+     */
+    public User loadSelectedUser(String username) {
+
+        Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/get-selected-user");
+
+        request.addContent("username",username);
+
+        sendRequest(request);
+
+        User user = responseHandler.getResponse().getUser();
+
+        return user;
+    }
+
+
+    /**
+     * @Author danial
+     * create or join to selected private chat
+     */
+    public ArrayList<Message> createPrivateChat(String userName) {
+        Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/check-exist-create-privateChat-with-userName");
+
+        request.addContent("username",userName);
+
+        sendRequest(request);
+
+        return responseHandler.getResponse().getMessages();
+    }
+
+    /**
+     * @Author danial
+     * send request
+     */
+    public GraphicInputStatus sendMessageToList(String msgText) {
+        Request request = new Request(RequestType.POST,ObjectRequested.CHAT,"chat/sendMessage");
+
+        request.addContent("msg",msgText);
+
+        sendRequest(request);
+
+        Flag flag = responseHandler.getFlag();
+
+        if(flag == Flag.NotSuccessful) {
+            return GraphicInputStatus.NotSuccessful;
+        }
+        else {
+            return GraphicInputStatus.Successful;
+        }
+    }
+
 }

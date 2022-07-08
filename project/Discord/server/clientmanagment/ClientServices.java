@@ -848,6 +848,21 @@ public class ClientServices {
 
     /**
      * @Author danial
+     * @param  userName
+     * get selected user
+     */
+    public void getSelectedUser(String userName) {
+        User user = searchUser(userName);
+
+        Response response = new Response();
+
+        response.setUser(user);
+
+        controller.sendResponse(response);
+    }
+
+    /**
+     * @Author danial
      * @param  friend
      * @return Boolean
      * get user and check Friend Exist In User Friends
@@ -970,7 +985,7 @@ public class ClientServices {
         }
 
         if(checkExist) {
-            int indexOfArray = 0;
+            /*int indexOfArray = 0;
             for (Message msg : selectedChat.getMessages()) {
                 if(msg instanceof FileMessage) {
                     FileMessage fm = (FileMessage) msg;
@@ -983,7 +998,83 @@ public class ClientServices {
                     response.addText(msg.toString());
                 }
                 ++indexOfArray;
+            }*/
+
+            response.setMessages(selectedChat.getMessages());
+
+            controller.setChat(selectedChat);
+
+            controller.enterPrivateChat();
+
+            response.setFlag(Flag.Successful);
+
+            controller.sendResponse(response);
+        }
+        else {
+            PrivateChat newPrivateChat = new PrivateChat();
+
+            newPrivateChat.setUser1(user);
+
+            newPrivateChat.setUser2(friend);
+
+            friend.getChats().add(newPrivateChat);
+
+            user.getChats().add(newPrivateChat);
+
+            controller.setChat(newPrivateChat);
+
+            controller.enterPrivateChat();
+
+            response.setFlag(Flag.Successful);
+
+            controller.sendResponse(response);
+        }
+    }
+
+    /**
+     * @Author danial
+     * @param indexOfFriend
+     * check exist private chat and create or join to chat
+     */
+    public void checkExistPrivateChatWithUserName(String userName) {
+        Response response = new Response();
+
+        User user = controller.getUser();
+
+        ArrayList<PrivateChat> pChats =  user.getChats();
+
+        Boolean checkExist = false;
+
+        PrivateChat selectedChat = new PrivateChat();
+
+        User friend = searchUser(userName);
+
+        for (PrivateChat privateChat : pChats) {
+            if(privateChat.getUser1().getUserName().equals(userName)  || privateChat.getUser2().getUserName().equals(userName)) {
+                selectedChat = privateChat;
+
+                checkExist = true;
+                break;
             }
+        }
+
+        if(checkExist) {
+            /*int indexOfArray = 0;
+            for (Message msg : selectedChat.getMessages()) {
+                if(msg instanceof FileMessage) {
+                    FileMessage fm = (FileMessage) msg;
+
+                    fm.setDownloadCode(indexOfArray);
+
+                    response.addText(fm.toString());
+                }
+                else {
+                    response.addText(msg.toString());
+                }
+                ++indexOfArray;
+            }*/
+
+            response.setMessages(selectedChat.getMessages());
 
             controller.setChat(selectedChat);
 
