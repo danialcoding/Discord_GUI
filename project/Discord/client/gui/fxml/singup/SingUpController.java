@@ -194,7 +194,7 @@ public class SingUpController implements Initializable {
                     username_text.setFill(Color.rgb(204,118,121));
                 }
                 else if(gis == GraphicInputStatus.UserNameDuplicate) {
-                    username_text.setText("USERNAME - Email is duplicate");
+                    username_text.setText("USERNAME - Username is duplicate");
                     username_text.setFill(Color.rgb(204,118,121));
                 }
                 else {

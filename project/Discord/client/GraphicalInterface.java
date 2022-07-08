@@ -306,11 +306,10 @@ public class GraphicalInterface {
 
         ArrayList<FriendRequest> friendRequests = response.getFriendRequests();
 
-        if(response.getFriendRequest() != null) {
+        if(response.getFriendRequest() != null && response.getFriendRequest() != friendRequests.get(friendRequests.size()-1)) {
             friendRequests.add(response.getFriendRequest());
             response.setFriendRequest(null);
         }
-
 
         if (friendRequests == null) {
             return new ArrayList<>();

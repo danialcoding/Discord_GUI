@@ -460,10 +460,6 @@ public class ClientServices {
 
         Response response = new Response();
 
-        System.out.println(friend.getFriends());
-
-        System.out.println(controller.getUser().getFriends());
-
         if(friend == null) {
             response.addText("User not found!");
 
@@ -634,10 +630,6 @@ public class ClientServices {
         else {
             friend = friendRequest.getSender();
         }
-
-        System.out.println(friend.getFriends());
-
-        System.out.println(controller.getUser().getFriends());
 
         switch (action) {
             case "accept" -> {

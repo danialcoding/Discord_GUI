@@ -1,0 +1,6 @@
+#search_username_textfield {
+    -fx-text-fill: #b0b2b5;
+}
+#send_friend_request_button {
+    -fx-padding: 7px 15px 7px 15px;
+}
