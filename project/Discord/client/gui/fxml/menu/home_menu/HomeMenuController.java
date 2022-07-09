@@ -101,6 +101,20 @@ public class HomeMenuController implements Initializable {
                 fmc.setParentController(HomeMenuController.this);
 
                 top_bar.getChildren().set(1,root);
+
+
+                FXMLLoader fxmlLoader2 = new FXMLLoader();
+
+                fxmlLoader2.setLocation(FriendsMenuController.class.getResource("normal_center.fxml"));
+
+                Parent root2 = null;
+                try {
+                    root2 = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                friends_menu_pane.getChildren().set(0,root2);
             }
         });
     }

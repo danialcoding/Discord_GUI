@@ -1082,6 +1082,8 @@ public class ClientServices {
 
             response.setFlag(Flag.Successful);
 
+            System.out.println(response.getMessages());
+
             controller.sendResponse(response);
         }
         else {

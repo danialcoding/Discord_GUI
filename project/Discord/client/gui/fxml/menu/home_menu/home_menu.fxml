@@ -146,7 +146,7 @@
    <center>
       <Pane fx:id="friends_menu_pane" prefHeight="780.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="780.0" prefWidth="1090.0" />
+            <Pane prefHeight="780.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" />
          </children>
       </Pane>
    </center>

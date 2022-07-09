@@ -49,6 +49,8 @@ public class ChatController implements Initializable {
     public void loadMessages(String userName) {
         ArrayList<Message> messages = graphicalInterface.createPrivateChat(userName);
 
+        System.out.println(messages);
+
         chat_vbox.getChildren().clear();
 
         if(messages == null) {
