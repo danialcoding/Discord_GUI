@@ -40,7 +40,6 @@ public class AllFriendsController implements Initializable {
     }
 
     public void loadAllfriends() {
-        //User user = graphicalInterface.loadUser();
 
         ArrayList<User> Friends = graphicalInterface.loadFriends();
 

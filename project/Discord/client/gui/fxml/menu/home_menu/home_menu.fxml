@@ -144,14 +144,10 @@
       </VBox>
    </left>
    <center>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f; -fx-border-color: #36393f;" BorderPane.alignment="CENTER">
-         <content>
-            <Pane fx:id="friends_menu_pane" prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f;">
-               <children>
-                  <Pane prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" />
-               </children>
-            </Pane>
-         </content>
-      </ScrollPane>
+      <Pane fx:id="friends_menu_pane" prefHeight="780.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="780.0" prefWidth="1090.0" />
+         </children>
+      </Pane>
    </center>
 </BorderPane>

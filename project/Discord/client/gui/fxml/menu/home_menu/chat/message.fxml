@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="80.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.chat.MessageController">
+<HBox prefHeight="90.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.chat.MessageController">
    <children>
       <HBox fx:id="main_hbox" prefHeight="76.0" prefWidth="1020.0" style="-fx-alignment: center-left;">
          <children>
@@ -38,11 +38,17 @@
                      </VBox.margin>
                   </Text>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
                <padding>
-                  <Insets bottom="5.0" />
+                  <Insets top="5.0" />
                </padding>
             </VBox>
          </children>
       </HBox>
    </children>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
 </HBox>

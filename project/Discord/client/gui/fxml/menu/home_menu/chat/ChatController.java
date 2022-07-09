@@ -34,6 +34,9 @@ public class ChatController implements Initializable {
     @FXML
     private TextField message_textfield;
 
+    @FXML
+    private VBox chat_vbox;
+
     public void setData(GraphicalInterface graphicalInterface) {
         this.graphicalInterface = graphicalInterface;
     }
@@ -46,7 +49,7 @@ public class ChatController implements Initializable {
     public void loadMessages(String userName) {
         ArrayList<Message> messages = graphicalInterface.createPrivateChat(userName);
 
-        chat_page_vbox.getChildren().clear();
+        chat_vbox.getChildren().clear();
 
         if(messages == null) {
             return;
@@ -69,7 +72,7 @@ public class ChatController implements Initializable {
             mc.setData(graphicalInterface,messages.get(i));
 
             if(i == 0) {
-                chat_page_vbox.getChildren().clear();
+                chat_vbox.getChildren().clear();
             }
 
             chat_page_vbox.getChildren().add(0,root);
@@ -82,6 +85,7 @@ public class ChatController implements Initializable {
             public void handle(KeyEvent keyEvent) {
                 if(keyEvent.getCode() == KeyCode.ENTER) {
                     String text = message_textfield.getText();
+                    message_textfield.clear();
                     if(!text.equals("")) {
                         sendMessage(text);
                     }

@@ -8,43 +8,49 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="726.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" stylesheets="@../friends_menu/add_friend/add_friend.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.chat.ChatController">
+<VBox prefHeight="780.0" prefWidth="1090.0" style="-fx-background-color: #36393f;" stylesheets="@chat.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.chat.ChatController">
    <padding>
       <Insets left="35.0" right="35.0" />
    </padding>
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="726.0" prefWidth="1020.0" style="-fx-background-color: #36393f; -fx-border-color: #36393f;">
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="700.0" prefWidth="1020.0" style="-fx-background-color: #36393f; -fx-border-color: #36393f;">
          <content>
-            <VBox fx:id="chat_page_vbox" alignment="TOP_CENTER" prefHeight="726.0" prefWidth="1016.0" style="-fx-background-color: #36393f;">
+            <VBox fx:id="chat_page_vbox" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1016.0" style="-fx-background-color: #36393f;">
                <children>
-                  <VBox prefHeight="650.0" prefWidth="1020.0" />
-                  <HBox fx:id="send_message_box" prefHeight="55.0" prefWidth="1020.0">
-                     <children>
-                        <HBox prefHeight="55.0" prefWidth="1020.0" style="-fx-background-radius: 10; -fx-background-color: #40444b; -fx-alignment: center-left;">
-                           <padding>
-                              <Insets left="15.0" right="15.0" />
-                           </padding>
-                           <children>
-                              <ImageView fx:id="send_file_image" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../icons/plus.png" />
-                                 </image>
-                              </ImageView>
-                              <TextField fx:id="message_textfield" prefHeight="35.0" prefWidth="925.0" style="-fx-background-color: #40444b;">
-                                 <HBox.margin>
-                                    <Insets left="25.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
+                  <VBox fx:id="chat_vbox" prefHeight="700.0" prefWidth="1020.0" />
                </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
             </VBox>
          </content>
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </ScrollPane>
+      <HBox fx:id="send_message_box" prefHeight="55.0" prefWidth="1020.0">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="1020.0" style="-fx-background-radius: 10; -fx-background-color: #40444b; -fx-alignment: center-left;">
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <children>
+                  <ImageView fx:id="send_file_image" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../icons/plus.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="message_textfield" prefHeight="40.0" prefWidth="925.0" style="-fx-background-color: #40444b;">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="25.0" />
+         </VBox.margin>
+      </HBox>
    </children>
 </VBox>
