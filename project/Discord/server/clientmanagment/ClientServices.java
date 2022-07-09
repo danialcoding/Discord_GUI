@@ -3,6 +3,8 @@ package project.Discord.server.clientmanagment;
 import project.Discord.server.entity.*;
 import project.Discord.networkPortocol.Response;
 import project.Discord.server.observerpattern.Subscriber;
+
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -1082,8 +1084,6 @@ public class ClientServices {
 
             response.setFlag(Flag.Successful);
 
-            System.out.println(response.getMessages());
-
             controller.sendResponse(response);
         }
         else {
@@ -1158,11 +1158,7 @@ public class ClientServices {
     public void sendMessageToPrivateChat(String msgText) {
         Response response = new Response();
 
-        Chat chat = controller.getChat();
-
-        PrivateChat pChat = new PrivateChat();
-
-        pChat = (PrivateChat) chat;
+        PrivateChat pChat = (PrivateChat) controller.getChat();
 
         if(pChat.getIsBlocked()) {
             response.setFlag(Flag.NotSuccessful);
@@ -1192,7 +1188,87 @@ public class ClientServices {
 
         Message msg = new Message(controller.getUser().getUserName(),msgText);
 
+        //controller.getChat().getMessages().add(msg);
+
+        //int findex = getChatWithFriend(friend);
+
+        //friend.getChats().get(findex).getMessages().add(msg);
+
         controller.sendMessageToChat(msg);
+    }
+
+    /**
+     * @Author danial
+     * @param friendUsername
+     * search and return private chat from user friend chats index
+     */
+    public void getFriendMessage() {
+        PrivateChat pChat = (PrivateChat)controller.getChat();
+
+        User friend;
+
+        if(pChat.getUser1().getUserName().equals(controller.getUser().getUserName())) {
+            friend = pChat.getUser2();
+        }
+        else {
+            friend = pChat.getUser1();
+        }
+
+
+        Response response = new Response();
+
+        User user = controller.getUser();
+
+        PrivateChat selectedChat = null;
+
+        for (PrivateChat pv : friend.getChats()) {
+            if(pv.getUser1().getUserName().equals(user.getUserName()) || pv.getUser2().getUserName().equals(user.getUserName())) {
+                selectedChat = pv;
+                break;
+            }
+        }
+
+        response.setMessages(selectedChat.getMessages());
+
+        controller.sendResponse(response);
+    }
+
+    /**
+     * @Author danial
+     * @param chat
+     * @return int
+     * search and return private chat from user friend chats index
+     */
+    public int getChatWithFriend(User friend) {
+        User user = controller.getUser();
+
+        int index = 0;
+        for (Chat c : friend.getChats()) {
+            PrivateChat pv = (PrivateChat) c;
+            if((pv.getUser1().getUserName().equals(user.getUserName()) && pv.getUser2().getUserName().equals(friend.getUserName())) || (pv.getUser2().getUserName().equals(user.getUserName()) && pv.getUser1().getUserName().equals(friend.getUserName()))) {
+                return index;
+            }
+            ++index;
+        }
+        return -1;
+    }
+
+    /**
+     * @Author danial
+     * @param msgText
+     * get msg text and send to chat
+     */
+    public void getChatMessages() {
+        /*Thread thread = new Thread(new test(controller));
+        thread.start();*/
+
+        Response response = new Response();
+
+        PrivateChat pChat = (PrivateChat) controller.getChat();
+
+        response.setMessages(pChat.getMessages());
+
+        controller.sendResponse(response);
     }
 
     /**

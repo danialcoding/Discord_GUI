@@ -326,9 +326,9 @@ public class ClientDataManagement implements CRUDFunctions {
 
         saveDiscordServerPhoto();
 
-        //savePrivateChatsMessages();
+        savePrivateChatsMessages();
 
-        //saveChannelMessages();
+        saveChannelMessages();
 
         try(FileOutputStream fileOutputStream = new FileOutputStream("project/Discord/server/save/users");
             ObjectOutputStream out = new ObjectOutputStream(fileOutputStream)) {
@@ -360,9 +360,9 @@ public class ClientDataManagement implements CRUDFunctions {
 
             loadDiscordServerPhoto();
 
-            //loadPrivateChatsMessages();
+            loadPrivateChatsMessages();
 
-            //loadChannelMessages();
+            loadChannelMessages();
         }
 
     }

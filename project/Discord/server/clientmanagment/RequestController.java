@@ -171,10 +171,14 @@ public class RequestController implements Runnable {
                 case "channel/pin-messages" -> clientServices.showPinMessages();
 
 
-
-
             }
+        }
+        else if(objectRequested == ObjectRequested.CHAT) {
+            switch (r.getEndPoint()) {
+                case "chat/get-messages" -> clientServices.getChatMessages();
 
+                case "chat/get-friend-messages" -> clientServices.getFriendMessage();
+            }
         }
 
     }
@@ -200,7 +204,7 @@ public class RequestController implements Runnable {
 
                 case "user/addChannelPermissionForSpecificChannel"->clientServices.addChannelPermissionForSpecificChannel(r.getContent().get("username"), r.getContent().get("permission"));
 
-                case "chat/sendMessage" -> clientServices.sendMessageToPrivateChat(r.getContent().get("chat/sendMessage"));
+                case "chat/sendMessage" -> clientServices.sendMessageToPrivateChat(r.getContent().get("msg"));
 
                 case "user/send-friend-request" -> clientServices.sendFriendRequest(r.getContent().get("username"));
 

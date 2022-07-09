@@ -25,7 +25,7 @@
             <VBox prefHeight="76.0" prefWidth="189.0" style="-fx-alignment: center-left;">
                <children>
                   <Text fx:id="username_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 18;" text="Charonx_007" />
-                  <Text fx:id="request_status_text" layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #898b90; -fx-font-weight: bold; -fx-font-size: 16;" text="Charonx_007" />
+                  <Text fx:id="user_status_text" layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #898b90; -fx-font-weight: bold; -fx-font-size: 16;" text="Charonx_007" />
                </children>
             </VBox>
          </children>
@@ -35,7 +35,7 @@
             <AnchorPane layoutX="318.0" layoutY="10.0" prefHeight="76.0" prefWidth="0.0">
                <children>
                   <Circle fill="#2f3136" layoutX="170.0" layoutY="38.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                  <Circle fx:id="message_circle" fill="#0084ff" layoutX="170.0" layoutY="38.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fx:id="message_circle" fill="#0084ff" layoutX="170.0" layoutY="38.0" radius="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                </children>
             </AnchorPane>
          </children>

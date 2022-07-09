@@ -115,9 +115,9 @@ public class ResponseHandler implements Runnable {
             try {
                 setResponse((Response) in.readObject());
 
-                if(inChat){
+                /*if(inChat){
                     showResponse();
-                }
+                }*/
 
             } catch (EOFException | SocketException e) {
                 break;

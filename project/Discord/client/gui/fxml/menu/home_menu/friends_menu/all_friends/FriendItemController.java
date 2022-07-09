@@ -43,7 +43,7 @@ public class FriendItemController implements Initializable {
     private Text username_text;
 
     @FXML
-    private Text request_status_text;
+    private Text user_status_text;
 
     @FXML
     private Circle message_circle;
@@ -68,8 +68,6 @@ public class FriendItemController implements Initializable {
         username_text.setText(friend.getUserName());
 
         setPhoto(friend);
-
-        request_status_text.setText("Incoming Friend Request");
 
         InputStream stream = getClass().getResourceAsStream("/project/Discord/client/gui/icons/message.png");
 
@@ -113,22 +111,43 @@ public class FriendItemController implements Initializable {
 
         String address = "";
 
+        String status = "";
+
         switch (user.getStatus()) {
-            case ONLINE -> address = "/project/Discord/client/gui/icons/online.png";
-            case OFFLINE -> address = "/project/Discord/client/gui/icons/offline.png";
-            case IDLE -> address = "/project/Discord/client/gui/icons/idle.png";
-            case INVISIBLE -> address = "/project/Discord/client/gui/icons/offline.png";
-            case DO_NOT_DISTURB -> address = "/project/Discord/client/gui/icons/do_not_disturb.png";
+            case ONLINE -> {
+                address =  "/project/Discord/client/gui/icons/online.png";
+                status = "Online";
+            }
+            case OFFLINE -> {
+                address = "/project/Discord/client/gui/icons/offline.png";
+                status = "Offline";
+            }
+            case IDLE -> {
+                address = "/project/Discord/client/gui/icons/idle.png";
+                status = "Idle";
+            }
+            case INVISIBLE -> {
+                address = "/project/Discord/client/gui/icons/offline.png";
+                status = "Invisible";
+            }
+            case DO_NOT_DISTURB -> {
+                address = "/project/Discord/client/gui/icons/do_not_disturb.png";
+                status = "Do not disturb";
+            }
             case NULL -> {
                 if(user.isActive()) {
                     address = "/project/Discord/client/gui/icons/online.png";
+                    status = "Online";
                 }
                 else {
                     address = "/project/Discord/client/gui/icons/offline.png";
+                    status = "Offline";
                 }
             }
         }
 
+        user_status_text.setText(status);
+        
         InputStream stream = getClass().getResourceAsStream(address);
 
         Image img = new Image(stream);

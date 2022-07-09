@@ -22,8 +22,6 @@ import java.util.ResourceBundle;
 
 public class MessageController implements Initializable {
 
-    private GraphicalInterface graphicalInterface;
-
     @FXML
     private HBox main_hbox;
 
@@ -45,19 +43,18 @@ public class MessageController implements Initializable {
 
     }
 
-    public void setData(GraphicalInterface graphicalInterface, Message message) {
+    public void setData(User sender,Message message) {
         username_text.setText(message.getSender());
 
         date_text.setText(message.getDateTime());
 
         message_text.setText(message.getContent());
 
-        setPhoto(graphicalInterface.loadSelectedUser(message.getSender()));
+        setPhoto(sender);
     }
 
     public void setPhoto(User user) {
         if(user.getHavePhoto()) {
-
             try {
                 ByteArrayInputStream bis = new ByteArrayInputStream(user.getUserPhoto());
 

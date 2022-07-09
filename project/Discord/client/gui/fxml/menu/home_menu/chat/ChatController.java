@@ -1,5 +1,6 @@
 package project.Discord.client.gui.fxml.menu.home_menu.chat;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.stage.Stage;
 import project.Discord.client.GraphicInputStatus;
 import project.Discord.client.GraphicalInterface;
 import project.Discord.server.entity.Message;
+import project.Discord.server.entity.User;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +27,10 @@ import java.util.ResourceBundle;
 public class ChatController implements Initializable {
 
     private GraphicalInterface graphicalInterface;
+
+    private ArrayList<Message> messages;
+
+    private User user;
 
     @FXML
     private VBox chat_page_vbox;
@@ -37,8 +44,16 @@ public class ChatController implements Initializable {
     @FXML
     private VBox chat_vbox;
 
-    public void setData(GraphicalInterface graphicalInterface) {
+    public void setData(GraphicalInterface graphicalInterface, User user) {
         this.graphicalInterface = graphicalInterface;
+        this.user = user;
+        if(messages == null) {
+            this.messages = new ArrayList<>();
+        }
+    }
+
+    public void setMessages(ArrayList<Message> messages) {
+        this.messages = messages;
     }
 
     @Override
@@ -49,36 +64,40 @@ public class ChatController implements Initializable {
     public void loadMessages(String userName) {
         ArrayList<Message> messages = graphicalInterface.createPrivateChat(userName);
 
-        System.out.println(messages);
+        this.messages = messages;
 
         chat_vbox.getChildren().clear();
+        if(messages != null) {
+            for (int i = messages.size()-1; i >= 0; i--) {
 
-        if(messages == null) {
-            return;
+                FXMLLoader fxmlLoader = new FXMLLoader();
+
+                fxmlLoader.setLocation(MessageController.class.getResource("message.fxml"));
+
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                MessageController mc = fxmlLoader.getController();
+
+                mc.setData(graphicalInterface.loadSelectedUser(messages.get(i).getSender()),messages.get(i));
+
+                if(i == 0) {
+                    chat_vbox.getChildren().clear();
+                }
+
+                chat_page_vbox.getChildren().add(0,root);
+            }
         }
 
-        for (int i = 0; i < messages.size(); i++) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
+        MessageGetter msgGetter = new MessageGetter(graphicalInterface,this,messages,graphicalInterface.getResponseHandler());
 
-            fxmlLoader.setLocation(MessageController.class.getResource("message.fxml"));
+        Thread thread = new Thread(msgGetter);
 
-            Parent root = null;
-            try {
-                root = fxmlLoader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            MessageController mc = fxmlLoader.getController();
-
-            mc.setData(graphicalInterface,messages.get(i));
-
-            if(i == 0) {
-                chat_vbox.getChildren().clear();
-            }
-
-            chat_page_vbox.getChildren().add(0,root);
-        }
+        thread.start();
     }
 
     public void enterToSendNewMessage() {
@@ -99,7 +118,15 @@ public class ChatController implements Initializable {
     public void sendMessage(String text) {
         GraphicInputStatus gis = graphicalInterface.sendMessageToList(text);
 
-        if(gis == GraphicInputStatus.NotSuccessful) {
+        Message newMSG = new Message(user.getUserName(),text);
+
+        if(messages == null) {
+            this.messages = new ArrayList<>();
+        }
+
+        messages.add(newMSG);
+
+        if (gis == GraphicInputStatus.NotSuccessful) {
             try {
                 Parent root = FXMLLoader.load(BlockedErrorController.class.getResource("blocked_error.fxml"));
 
@@ -131,10 +158,76 @@ public class ChatController implements Initializable {
 
         MessageController mc = fxmlLoader.getController();
 
-        Message msg = new Message(graphicalInterface.loadUser().getUserName(),text);
+        Message msg = new Message(user.getUserName(),text);
 
-        mc.setData(graphicalInterface,msg);
+        mc.setData(user,msg);
 
-        chat_page_vbox.getChildren().add(0,root);
+        chat_page_vbox.getChildren().add(messages.size()-1,root);
+    }
+
+    public void updateMessage() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                chat_vbox.getChildren().clear();
+
+                //messages = graphicalInterface.getMessages();
+
+                if(messages != null) {
+                    for (int i = messages.size()-1; i >= 0; i--) {
+
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+
+                        fxmlLoader.setLocation(MessageController.class.getResource("message.fxml"));
+
+                        Parent root = null;
+                        try {
+                            root = fxmlLoader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        MessageController mc = fxmlLoader.getController();
+
+                        mc.setData(graphicalInterface.loadSelectedUser(messages.get(i).getSender()),messages.get(i));
+
+                        if(i == 0) {
+                            chat_vbox.getChildren().clear();
+                        }
+
+                        chat_page_vbox.getChildren().add(0,root);
+                    }
+                }
+            }
+        });
+        /*messages = graphicalInterface.getFriendMessages();
+
+        chat_vbox.getChildren().clear();
+
+        if(messages != null) {
+            for (int i = messages.size()-1; i >= 0; i--) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+
+                fxmlLoader.setLocation(MessageController.class.getResource("message.fxml"));
+
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                MessageController mc = fxmlLoader.getController();
+
+                mc.setData(graphicalInterface.loadSelectedUser(messages.get(i).getSender()),messages.get(i));
+
+                if(i == 0) {
+                    chat_vbox.getChildren().clear();
+                }
+
+                chat_page_vbox.getChildren().add(0,root);
+            }
+        }*/
     }
 }

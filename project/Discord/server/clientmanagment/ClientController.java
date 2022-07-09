@@ -101,7 +101,6 @@ public class ClientController implements Subscriber {
     }
 
 
-
     public void getFriendsOfUser(){
         int index = 1;
         Response response = new Response();
@@ -249,6 +248,7 @@ public class ClientController implements Subscriber {
 
     @Override
     public void update(Response response) {
+        System.out.println(user.getUserName() + response.getMessage());
 
         sendResponse(response);
     }
@@ -732,9 +732,7 @@ public class ClientController implements Subscriber {
     }
 
     public void sendMessageToChat(Message msg) {
-
         chat.sendMessage(msg,user);
-
     }
 
     public void kickMember(String userName){

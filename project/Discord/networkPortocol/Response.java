@@ -29,6 +29,8 @@ public class Response implements Serializable {
 
     private ArrayList<Message> messages;
 
+    private Message message;
+
 
 
     public Response() {
@@ -73,6 +75,14 @@ public class Response implements Serializable {
 
     public ArrayList<Message> getMessages() {
         return messages;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
     public void setMessages(ArrayList<Message> messages) {

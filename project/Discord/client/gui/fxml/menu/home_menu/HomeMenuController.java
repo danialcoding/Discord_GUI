@@ -10,9 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -102,19 +100,11 @@ public class HomeMenuController implements Initializable {
 
                 top_bar.getChildren().set(1,root);
 
+                Pane pane = new Pane();
 
-                FXMLLoader fxmlLoader2 = new FXMLLoader();
+                pane.setStyle("-fx-background-color: #36393f; -fx-pref-height: 780;-fx-pref-width: 1090;");
 
-                fxmlLoader2.setLocation(FriendsMenuController.class.getResource("normal_center.fxml"));
-
-                Parent root2 = null;
-                try {
-                    root2 = fxmlLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                friends_menu_pane.getChildren().set(0,root2);
+                friends_menu_pane.getChildren().set(0,pane);
             }
         });
     }
@@ -325,7 +315,7 @@ public class HomeMenuController implements Initializable {
 
         ChatController cc = fxmlLoader1.getController();
 
-        cc.setData(graphicalInterface);
+        cc.setData(graphicalInterface,graphicalInterface.loadUser());
 
         cc.loadMessages(friend.getUserName());
 

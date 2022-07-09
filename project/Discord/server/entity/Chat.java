@@ -42,10 +42,11 @@ public class Chat implements Publisher {
 
         Response response = new Response();
 
-        response.addText(message.toString());
+        //response.addText(message.toString());
+
+        response.setMessage(message);
 
         notifySubscribers(response,user);
-
     }
 
     public void deleteMessage(int index){

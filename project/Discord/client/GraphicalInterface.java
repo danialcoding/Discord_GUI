@@ -66,6 +66,10 @@ public class GraphicalInterface {
         this.objectOutputStream = objectOutputStream;
     }
 
+    public ResponseHandler getResponseHandler() {
+        return responseHandler;
+    }
+
     /**
      * @Author danial
      * send request
@@ -308,9 +312,11 @@ public class GraphicalInterface {
 
         ArrayList<FriendRequest> friendRequests = response.getFriendRequests();
 
-        if(response.getFriendRequest() != null && response.getFriendRequest() != friendRequests.get(friendRequests.size()-1)) {
-            friendRequests.add(response.getFriendRequest());
-            response.setFriendRequest(null);
+        if(friendRequests != null && friendRequests.size() != 0) {
+            if(response.getFriendRequest() != null && response.getFriendRequest() != friendRequests.get(friendRequests.size()-1)) {
+                friendRequests.add(response.getFriendRequest());
+                response.setFriendRequest(null);
+            }
         }
 
         if (friendRequests == null) {
@@ -405,7 +411,6 @@ public class GraphicalInterface {
      * load Selected User
      */
     public User loadSelectedUser(String username) {
-
         Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/get-selected-user");
 
         request.addContent("username",username);
@@ -429,7 +434,13 @@ public class GraphicalInterface {
 
         sendRequest(request);
 
-        return responseHandler.getResponse().getMessages();
+        ArrayList<Message> messages = responseHandler.getResponse().getMessages();
+
+        if(messages == null) {
+            return new ArrayList<>();
+        }
+
+        return messages;
     }
 
     /**
@@ -451,6 +462,26 @@ public class GraphicalInterface {
         else {
             return GraphicInputStatus.Successful;
         }
+    }
+
+    public ArrayList<Message> getMessages() {
+        Request request = new Request(RequestType.GET,ObjectRequested.CHAT,"chat/get-messages");
+
+        sendRequest(request);
+
+        ArrayList<Message> messages = responseHandler.getResponse().getMessages();
+
+        return messages;
+    }
+
+    public ArrayList<Message> getFriendMessages() {
+        Request request = new Request(RequestType.GET,ObjectRequested.CHAT,"chat/get-friend-messages");
+
+        sendRequest(request);
+
+        ArrayList<Message> messages = responseHandler.getResponse().getMessages();
+
+        return messages;
     }
 
 }
