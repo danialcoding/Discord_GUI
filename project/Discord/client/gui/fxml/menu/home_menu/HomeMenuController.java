@@ -20,6 +20,7 @@ import project.Discord.client.gui.fxml.menu.home_menu.chat.ChatTopBarController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.FriendsMenuController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.all_friends.AllFriendsController;
+import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.online_friends.OnlineFriendsController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.pending.PendingController;
 import project.Discord.server.entity.Message;
 import project.Discord.server.entity.PrivateChat;
@@ -126,10 +127,12 @@ public class HomeMenuController implements Initializable {
     }
 
     public void loadPrivateChats(ArrayList<PrivateChat> privateChats,User user) {
+        direct_messages_vbox.getChildren().clear();
+
         for (int i = 0; i < privateChats.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
 
-            fxmlLoader.setLocation(PrivateChatItemController.class.getResource("friend_item.fxml"));
+            fxmlLoader.setLocation(PrivateChatItemController.class.getResource("private_chat_item.fxml"));
 
             Parent root = null;
             try {
@@ -215,7 +218,24 @@ public class HomeMenuController implements Initializable {
 
         switch (id) {
             case "online_button" -> {
+                FXMLLoader fxmlLoader = new FXMLLoader();
 
+                fxmlLoader.setLocation(OnlineFriendsController.class.getResource("online_friends.fxml"));
+
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                OnlineFriendsController ofc = fxmlLoader.getController();
+
+                ofc.setdata(graphicalInterface,this);
+
+                ofc.loadAllfriends();
+
+                friends_menu_pane.getChildren().set(0,root);
             }
             case "all_button" -> {
                 FXMLLoader fxmlLoader = new FXMLLoader();

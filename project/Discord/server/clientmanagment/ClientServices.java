@@ -60,7 +60,7 @@ public class ClientServices {
      * @Author danial
      * get user servers Object
      */
-    public void getUserPrivateChatObject() {
+    public void getUserPrivateChatsObject() {
         Response response = new Response();
 
         response.setPrivateChats(controller.getUser().getChats());
@@ -1188,14 +1188,55 @@ public class ClientServices {
 
         Message msg = new Message(controller.getUser().getUserName(),msgText);
 
-        //controller.getChat().getMessages().add(msg);
+        controller.getChat().getMessages().add(msg);
 
         //int findex = getChatWithFriend(friend);
 
         //friend.getChats().get(findex).getMessages().add(msg);
 
-        controller.sendMessageToChat(msg);
+        //controller.sendMessageToChat(msg);
     }
+
+    /**
+     * @Author danial
+     * @param msgText
+     * get msg text and send to chat
+     */
+    public void sendMessageToFriend(String msgText) {
+        PrivateChat pChat = (PrivateChat) controller.getChat();
+
+        User friend = null;
+
+        if(pChat.getUser1().getUserName().equals(controller.getUser().getUserName())) {
+            friend = pChat.getUser2();
+        }
+        else if(pChat.getUser2().getUserName().equals(controller.getUser().getUserName())) {
+            friend = pChat.getUser1();
+        }
+
+        Message msg = new Message(controller.getUser().getUserName(),msgText);
+
+        String address = controller.sendNewMessageToFriend(msg);
+
+        clientDataManagement.saveMessage(address,msg);
+    }
+
+    /**
+     * @Author danial
+     * @param msgText
+     * get msg from chat
+     */
+    public void getNewMessageFromFriend(String address) {
+        Message msg = clientDataManagement.loadMessage(address);
+
+        Response response = new Response();
+
+        response.setMessage(msg);
+
+        controller.sendResponse(response);
+    }
+
+
 
     /**
      * @Author danial

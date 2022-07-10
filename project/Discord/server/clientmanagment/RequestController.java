@@ -130,7 +130,7 @@ public class RequestController implements Runnable {
 
                 case "user/servers-obg" -> clientServices.getUserServersObject();
 
-                case "user/private-chat-obg" -> clientServices.getUserPrivateChats();
+                case "user/private-chat-obg" -> clientServices.getUserPrivateChatsObject();
 
                 case "user/get-selected-user" -> clientServices.getSelectedUser(r.getContent().get("username"));
 
@@ -178,6 +178,8 @@ public class RequestController implements Runnable {
                 case "chat/get-messages" -> clientServices.getChatMessages();
 
                 case "chat/get-friend-messages" -> clientServices.getFriendMessage();
+
+                case "chat/get-new-message" -> clientServices.getNewMessageFromFriend(r.getContent().get("address"));
             }
         }
 
@@ -256,8 +258,7 @@ public class RequestController implements Runnable {
             switch (endPoint) {
                 case "chat/sendMessage" -> clientServices.sendMessageToPrivateChat(r.getContent().get("msg"));
 
-
-
+                case "chat/send-new-message-to-friend" -> clientServices.sendMessageToFriend(r.getContent().get("msg"));
 
                 case "chat/sendfilemessage" -> clientServices.sendFileMessageToPrivateChat(r.getContent().get("caption"),r.getContent().get("url"));
 

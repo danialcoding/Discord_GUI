@@ -181,8 +181,6 @@ public class FriendsMenuController implements Initializable {
         }
     };
 
-
-
     EventHandler<MouseEvent> clickAddFriendButton = new EventHandler<>() {
         @Override
         public void handle(MouseEvent mouseEvent) {

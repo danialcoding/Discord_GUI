@@ -49,6 +49,25 @@ public class Chat implements Publisher {
         notifySubscribers(response,user);
     }
 
+    public void notifyForGetNewMessage(User user,String address) {
+        Response response = new Response();
+
+        response.setAddress(address);
+
+        /*for (Subscriber s: subscribers) {
+            ClientController cc = (ClientController)s;
+
+            if(!cc.getUser().equals(user))
+                s.update(response);
+        }*/
+
+        for (Subscriber s: subscribers) {
+            ClientController cc = (ClientController)s;
+
+            s.update(response);
+        }
+    }
+
     public void deleteMessage(int index){
 
         messages.remove(index);

@@ -66,15 +66,20 @@
                         <Insets left="8.0" right="8.0" />
                      </VBox.margin>
                   </VBox>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="563.0" prefWidth="330.0" style="-fx-background-color: #2f3136; -fx-border-color: #2f3136;">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="630.0" prefWidth="330.0" style="-fx-background-color: #2f3136; -fx-border-color: #2f3136;">
                      <content>
-                        <VBox fx:id="direct_messages_vbox" prefHeight="547.0" prefWidth="326.0" style="-fx-background-color: #2f3136;">
+                        <VBox prefHeight="630.0" prefWidth="330.0" style="-fx-background-color: #2f3136;">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #96989d; -fx-font-weight: bold; -fx-font-size: 18;" text="DIRECT MESSAGES">
                                  <VBox.margin>
                                     <Insets left="10.0" />
                                  </VBox.margin>
                               </Text>
+                              <VBox fx:id="direct_messages_vbox" prefHeight="615.0" prefWidth="330.0">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </VBox>
                            </children>
                            <padding>
                               <Insets left="8.0" right="8.0" />

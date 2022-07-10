@@ -104,6 +104,29 @@ public class ClientDataManagement implements CRUDFunctions {
 
     }
 
+    public void saveMessage(String address,Message msg) {
+        try(FileOutputStream fileOutputStream = new FileOutputStream("project/Discord/server/save/messages/" + address);
+            ObjectOutputStream out = new ObjectOutputStream(fileOutputStream)) {
+            out.writeObject(msg);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Message loadMessage(String address) {
+        try(FileInputStream fileInputStream = new FileInputStream("project/Discord/server/save/messages/" + address);
+            ObjectInputStream in = new ObjectInputStream(fileInputStream)) {
+
+            Message msg = (Message) in.readObject();
+
+            return msg;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * @Author danial
      * save all users photo
@@ -317,6 +340,8 @@ public class ClientDataManagement implements CRUDFunctions {
             }
         }
     }
+
+
 
 
 

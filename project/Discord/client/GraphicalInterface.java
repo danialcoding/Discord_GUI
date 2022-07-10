@@ -27,12 +27,15 @@ public class GraphicalInterface {
 
     private ArrayList<PrivateChat> privateChats;
 
+    private ArrayList<Message> messages;
+
     private User user;
 
     public GraphicalInterface() {
         servers = new ArrayList<>();
         friends = new ArrayList<>();
         privateChats = new ArrayList<>();
+        messages = new ArrayList<>();
     }
 
     public ArrayList<DiscordServer> getServers() {
@@ -437,8 +440,15 @@ public class GraphicalInterface {
         ArrayList<Message> messages = responseHandler.getResponse().getMessages();
 
         if(messages == null) {
+            this.messages= new ArrayList<>();
             return new ArrayList<>();
         }
+
+        this.messages = messages;
+
+        Thread thread = new Thread(new getNewMessage(responseHandler,this));
+
+        thread.start();
 
         return messages;
     }
@@ -482,6 +492,30 @@ public class GraphicalInterface {
         ArrayList<Message> messages = responseHandler.getResponse().getMessages();
 
         return messages;
+    }
+
+    public ArrayList<Message> sendMessageToFriend(String msgText) {
+        Request request = new Request(RequestType.POST,ObjectRequested.CHAT,"chat/send-new-message-to-friend");
+
+        request.addContent("msg",msgText);
+
+        sendRequest(request);
+
+        ArrayList<Message> messages = responseHandler.getResponse().getMessages();
+
+        return messages;
+    }
+
+    public void getNewMessageFromFriend(String address) {
+        Request request = new Request(RequestType.GET,ObjectRequested.CHAT,"chat/get-new-message");
+
+        request.addContent("address",address);
+
+        sendRequest(request);
+
+        Message msg = responseHandler.getResponse().getMessage();
+
+        messages.add(msg);
     }
 
 }

@@ -31,15 +31,13 @@ public class MessageGetter implements Runnable {
     @Override
     public void run() {
         while (true) {
-            /*ArrayList<Message> messages = graphicalInterface.getMessages();
+            ArrayList<Message> messages = graphicalInterface.getMessages();
 
             try {
-                Thread.sleep(4000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            cc.updateMessage();
 
             if(messages != null) {
                 if(messages.size() > this.messages.size()) {
@@ -50,17 +48,15 @@ public class MessageGetter implements Runnable {
 
                     this.messages = messages;
                 }
-            }*/
+            }
 
-            if(responseHandler.getResponse() != null && responseHandler.getResponse().getMessage() != null) {
+            /*if(responseHandler.getResponse() != null && responseHandler.getResponse().getMessage() != null) {
                 messages.add(responseHandler.getResponse().getMessage());
-
-                //System.out.println(messages.get(messages.size()-1));
 
                 cc.setMessages(messages);
 
                 cc.updateMessage();
-            }
+            }*/
 
 
         }

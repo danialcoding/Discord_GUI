@@ -31,7 +31,7 @@ public class Response implements Serializable {
 
     private Message message;
 
-
+    private String address;
 
     public Response() {
         texts = new ArrayList<>();
@@ -79,6 +79,14 @@ public class Response implements Serializable {
 
     public Message getMessage() {
         return message;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setMessage(Message message) {

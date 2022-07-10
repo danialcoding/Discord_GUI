@@ -124,7 +124,9 @@ public class ChatController implements Initializable {
             this.messages = new ArrayList<>();
         }
 
-        messages.add(newMSG);
+        //messages.add(newMSG);
+
+        graphicalInterface.getMessages().add(newMSG);
 
         if (gis == GraphicInputStatus.NotSuccessful) {
             try {
@@ -144,6 +146,8 @@ public class ChatController implements Initializable {
             }
             return;
         }
+
+        graphicalInterface.sendMessageToFriend(text);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
 

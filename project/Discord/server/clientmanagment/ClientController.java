@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
 
 public class ClientController implements Subscriber {
@@ -248,8 +250,6 @@ public class ClientController implements Subscriber {
 
     @Override
     public void update(Response response) {
-        System.out.println(user.getUserName() + response.getMessage());
-
         sendResponse(response);
     }
 
@@ -733,6 +733,18 @@ public class ClientController implements Subscriber {
 
     public void sendMessageToChat(Message msg) {
         chat.sendMessage(msg,user);
+    }
+
+    public String sendNewMessageToFriend(Message msg) {
+        Random random = new Random(System.currentTimeMillis());
+
+        int code = random.nextInt();
+
+        String address = user.getUserName() + code;
+
+        chat.notifyForGetNewMessage(user,address);
+
+        return address;
     }
 
     public void kickMember(String userName){

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefHeight="76.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.friends_menu.online_friends.OnlineFriendItemController">
+   <children>
+      <HBox fx:id="main_hbox" prefHeight="76.0" prefWidth="510.0" style="-fx-alignment: center-left;">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="70.0">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+               <children>
+                  <Circle fill="#3ba55c" layoutX="29.0" layoutY="30.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fx:id="profile_photo_circle" fill="#3ba55c" layoutX="29.0" layoutY="30.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fill="#292b2f" layoutX="42.0" layoutY="49.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fx:id="status_circle" fill="#06ff44" layoutX="42.0" layoutY="49.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+               </children>
+            </AnchorPane>
+            <VBox prefHeight="76.0" prefWidth="189.0" style="-fx-alignment: center-left;">
+               <children>
+                  <Text fx:id="username_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 18;" text="Charonx_007" />
+                  <Text fx:id="user_status_text" layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #898b90; -fx-font-weight: bold; -fx-font-size: 16;" text="Charonx_007" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="76.0" prefWidth="510.0">
+         <children>
+            <AnchorPane layoutX="318.0" layoutY="10.0" prefHeight="76.0" prefWidth="0.0">
+               <children>
+                  <Circle fill="#2f3136" layoutX="170.0" layoutY="38.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fx:id="message_circle" fill="#0084ff" layoutX="170.0" layoutY="38.0" radius="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</HBox>
