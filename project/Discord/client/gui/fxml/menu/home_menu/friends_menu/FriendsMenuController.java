@@ -205,5 +205,12 @@ public class FriendsMenuController implements Initializable {
         }
     };
 
+    public void openInbox() {
+        inbox_image.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
 
+            }
+        });
+    }
 }

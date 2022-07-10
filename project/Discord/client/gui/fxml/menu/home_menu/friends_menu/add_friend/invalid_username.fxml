@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="550.0" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.InvalidUsernameController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="550.0" style="-fx-background-color: #36393f; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.InvalidUsernameController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 24;" text="ADD FRIEND">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 24;" text="FRIEND REQUEST FAILED">
          <VBox.margin>
             <Insets top="30.0" />
          </VBox.margin>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: b0b2b5; -fx-font-size: 20;" text="Username not found. Double check that spelling.">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: b0b2b5; -fx-font-size: 20;" text="Hm, didn't work. Double check that the capitalization, spelling, any spaces, and numbers are correct." textAlignment="CENTER" wrappingWidth="472.576171875">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>

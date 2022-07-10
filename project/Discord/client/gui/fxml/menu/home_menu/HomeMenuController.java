@@ -5,17 +5,23 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import project.Discord.client.GraphicalInterface;
+import project.Discord.client.gui.RunGUI;
 import project.Discord.client.gui.fxml.menu.home_menu.chat.ChatController;
+import project.Discord.client.gui.fxml.profile.ProfileControler;
 import project.Discord.client.gui.fxml.menu.home_menu.chat.ChatTopBarController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.FriendsMenuController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
@@ -23,7 +29,7 @@ import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.all_friends.A
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.blocked.BlockedFriendsController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.online_friends.OnlineFriendsController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.pending.PendingController;
-import project.Discord.server.entity.Message;
+import project.Discord.server.entity.DiscordServer;
 import project.Discord.server.entity.PrivateChat;
 import project.Discord.server.entity.User;
 import javax.imageio.ImageIO;
@@ -62,6 +68,9 @@ public class HomeMenuController implements Initializable {
 
     @FXML
     private Pane friends_menu_pane;
+
+    @FXML
+    private ImageView setting_image;
 
 
     public void setData(GraphicalInterface graphicalInterface) {
@@ -358,5 +367,35 @@ public class HomeMenuController implements Initializable {
         cc.loadMessages(friend.getUserName());
 
         friends_menu_pane.getChildren().set(0,root1);
+    }
+
+    public void openUserSetting() {
+        setting_image.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                Parent root = null;
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(RunGUI.class.getResource("/fxml/profile/profile.fxml"));
+
+                    root = fxmlLoader.load();
+
+                    ProfileControler profileControler = fxmlLoader.getController();
+
+                    //profileControler.setData(graphicalInterface);
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+                Scene scene = new Scene(root);
+
+                stage.setScene(scene);
+
+                stage.show();
+            }
+        });
     }
 }

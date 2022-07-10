@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import project.Discord.client.GraphicInputStatus;
 import project.Discord.client.GraphicalInterface;
 import javafx.scene.input.MouseEvent;
@@ -86,13 +87,23 @@ public class AddFriendController implements Initializable {
                }
                else if(graphicInputStatus == GraphicInputStatus.NotSuccessful) {
                    try {
-                       Parent root = FXMLLoader.load(InvalidUsernameController.class.getResource("invalid_username.fxml"));
+                       FXMLLoader fxmlLoader = new FXMLLoader(InvalidUsernameController.class.getResource("invalid_username.fxml"));
+
+                       Parent root = fxmlLoader.load();
+
+                       InvalidUsernameController iuc = fxmlLoader.getController();
+
+                       iuc.setData(AddFriendController.this);
 
                        Scene scene = new Scene(root);
 
                        Stage stage = new Stage();
 
                        stage.initModality(Modality.WINDOW_MODAL);
+
+                       stage.setResizable(false);
+
+                       stage.initStyle(StageStyle.UNDECORATED);
 
                        stage.setScene(scene);
 
@@ -107,5 +118,10 @@ public class AddFriendController implements Initializable {
                }
             }
         });
+    }
+
+    public void setError() {
+        error_text.setText("Hm, didn't work. Double check that the capitalization, spelling, any spaces, and numbers are correct.");
+        error_text.setFill(Color.rgb(185,110,113));
     }
 }

@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 
 public class InvalidUsernameController implements Initializable {
+    private AddFriendController addFriendController;
+
     @FXML
     private Button close_button;
 
@@ -19,12 +21,19 @@ public class InvalidUsernameController implements Initializable {
         closeError();
     }
 
+    public void setData(AddFriendController addFriendController) {
+        this.addFriendController = addFriendController;
+    }
+
     public void closeError() {
         close_button.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Stage stage = (Stage) close_button.getScene().getWindow();
+
                 stage.close();
+
+                addFriendController.setError();
             }
         });
     }
