@@ -1,4 +1,4 @@
-package project.Discord.client.gui.fxml.menu.home_menu.friends_menu.online_friends;
+package project.Discord.client.gui.fxml.menu.home_menu.friends_menu.blocked;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,9 +6,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import project.Discord.client.GraphicInputStatus;
 import project.Discord.client.GraphicalInterface;
 import project.Discord.client.gui.fxml.menu.home_menu.HomeMenuController;
-import project.Discord.server.entity.Status;
 import project.Discord.server.entity.User;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class OnlineFriendsController implements Initializable {
+public class BlockedFriendsController implements Initializable {
 
     private GraphicalInterface graphicalInterface;
 
@@ -40,21 +40,22 @@ public class OnlineFriendsController implements Initializable {
 
     }
 
-    public void loadAllfriends() {
+    public void loadBlocks() {
 
         ArrayList<User> Friends = graphicalInterface.loadFriends();
 
         friends_menu_vbox.getChildren().clear();
 
-        ArrayList<User> online = new ArrayList<>();
+        ArrayList<User> blocked = new ArrayList<>();
 
         for (int i = 0; i < Friends.size(); i++) {
-            if(Friends.get(i).getStatus() == Status.ONLINE || Friends.get(i).getStatus() == Status.IDLE || Friends.get(i).getActive()) {
-                online.add(Friends.get(i));
+            if(graphicalInterface.checkStatus(Friends.get(i).getUserName()) == GraphicInputStatus.Successful) {
+
+                blocked.add(Friends.get(i));
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
 
-                fxmlLoader.setLocation(OnlineFriendItemController.class.getResource("online_friend_item.fxml"));
+                fxmlLoader.setLocation(BlockedFriendItemController.class.getResource("blocked_friend_item.fxml"));
 
                 Parent root = null;
                 try {
@@ -63,7 +64,7 @@ public class OnlineFriendsController implements Initializable {
                     e.printStackTrace();
                 }
 
-                OnlineFriendItemController ofic = fxmlLoader.getController();
+                BlockedFriendItemController ofic = fxmlLoader.getController();
 
                 ofic.setData(graphicalInterface,Friends.get(i),i,this);
 
@@ -76,10 +77,10 @@ public class OnlineFriendsController implements Initializable {
         }
 
         if(Friends.size() == 0) {
-            topic_text.setText("ONLINE FRIENDS");
+            topic_text.setText("BLOCKED");
         }
         else {
-            topic_text.setText("ONLINE FRIENDS - " + online.size());
+            topic_text.setText("BLOCKEDS - " + blocked.size());
         }
     }
 

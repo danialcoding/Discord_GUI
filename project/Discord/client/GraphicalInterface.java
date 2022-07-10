@@ -518,4 +518,74 @@ public class GraphicalInterface {
         messages.add(msg);
     }
 
+    /**
+     * @Author danial
+     * @param userName
+     * @return int
+     */
+    public int friendIndex(String userName) {
+        int index = 0;
+
+        for (User friend : friends) {
+            if(friend.getUserName().equals(userName)) {
+                return index;
+            }
+            ++index;
+        }
+
+        return -1;
+    }
+
+    /**
+     * @Author danial
+     * block or unblock Selected Friend
+     */
+    public GraphicInputStatus checkStatus(String userName) {
+        Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/check-block-status-friend");
+
+        request.addContent("index", String.valueOf(friendIndex(userName)));
+
+        sendRequest(request);
+
+        Flag flag = responseHandler.getFlag();
+
+        if(flag == Flag.Successful) {
+            return GraphicInputStatus.Successful;
+        }
+        else {
+            return GraphicInputStatus.NotSuccessful;
+        }
+    }
+
+
+    /**
+     * @Author danial
+     * block or unblock Selected Friend
+     */
+    public void blockSelectedFriend(String indexOfFriend) {
+        Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/check-block-status-friend");
+
+        request.addContent("index", String.valueOf(indexOfFriend));
+
+        sendRequest(request);
+
+        Flag flag = responseHandler.getFlag();
+
+        if(flag == Flag.Successful) {
+            request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/unblock-friend");
+
+            request.addContent("index", String.valueOf(indexOfFriend));
+
+            sendRequest(request);
+        }
+        else if(flag == Flag.NotSuccessful) {
+            //System.out.println("Are you want to block user:\n1.Yes\n2.No");
+            request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/block-friend");
+
+            request.addContent("index", String.valueOf(indexOfFriend));
+
+            sendRequest(request);
+        }
+    }
+
 }
