@@ -37,7 +37,7 @@
                                 <Insets />
                             </VBox.margin>
                             <children>
-                                <Button fx:id="exit_button" mnemonicParsing="false" style="-fx-background-color: #d83c3e; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 5; -fx-text-fill: #ffffff;" text="Exit">
+                                <Button fx:id="esc_button" mnemonicParsing="false" style="-fx-background-color: #d83c3e; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 5; -fx-text-fill: #ffffff;" text="ESC">
                                     <VBox.margin>
                                         <Insets bottom="30.0" />
                                     </VBox.margin>
@@ -55,9 +55,9 @@
                         <VBox prefHeight="20.0" style="-fx-background-color: #36393f;">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 27; -fx-font-weight: bold;" text="MY ACCOUNT">
-                                    <VBox.margin>
-                                        <Insets bottom="25.0" top="50.0" />
-                                    </VBox.margin>
+                           <VBox.margin>
+                              <Insets bottom="25.0" top="50.0" />
+                           </VBox.margin>
                                 </Text>
                                 <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-background-color: #202225;">
                                     <children>
@@ -67,12 +67,13 @@
                                                     <children>
                                           <AnchorPane prefHeight="200.0" prefWidth="150.0">
                                              <children>
-                                                <Circle fx:id="circle_image" fill="DODGERBLUE" layoutX="64.0" layoutY="106.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-                                                <Circle fill="#202225" layoutX="101.0" layoutY="150.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-                                                <Circle fx:id="circle_status" fill="#00ff2f" layoutX="101.0" layoutY="150.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+                                                <Circle fill="#3ba55c" layoutX="64.0" layoutY="106.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                                                <Circle fx:id="profile_photo_circle" fill="DODGERBLUE" layoutX="64.0" layoutY="106.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                                                <Circle fill="#202225" layoutX="101.0" layoutY="150.0" radius="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                                                <Circle fx:id="status_circle" fill="#00ff2f" layoutX="101.0" layoutY="150.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                                              </children>
                                           </AnchorPane>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 24;" text="USERNAME">
+                                                        <Text fx:id="profile_username_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 24;" text="USERNAME">
                                                             <HBox.margin>
                                                                 <Insets left="25.0" top="10.0" />
                                                             </HBox.margin>
@@ -106,7 +107,7 @@
                                                         <VBox prefHeight="200.0" prefWidth="455.0">
                                                             <children>
                                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #919194; -fx-font-size: 18;" text="USERNAME" />
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-fill: #ffffff;" text="test_name">
+                                                                <Text fx:id="username_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-fill: #ffffff;" text="test_name">
                                                                     <VBox.margin>
                                                                         <Insets top="8.0" />
                                                                     </VBox.margin>
@@ -128,7 +129,7 @@
                                                         <VBox prefHeight="200.0" prefWidth="455.0">
                                                             <children>
                                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #919194; -fx-font-size: 18;" text="EMAIL" />
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-fill: #ffffff;" text="example@yahoo.com">
+                                                                <Text fx:id="email_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-fill: #ffffff;" text="example@yahoo.com">
                                                                     <VBox.margin>
                                                                         <Insets top="8.0" />
                                                                     </VBox.margin>
@@ -150,7 +151,7 @@
                                                         <VBox prefHeight="200.0" prefWidth="455.0">
                                                             <children>
                                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #919194; -fx-font-size: 18;" text="PHONE NUMBER" />
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-fill: #ffffff;" text="You haven't added a phone number yet.">
+                                                                <Text fx:id="phone_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-fill: #ffffff;" text="You haven't added a phone number yet.">
                                                                     <VBox.margin>
                                                                         <Insets top="8.0" />
                                                                     </VBox.margin>
