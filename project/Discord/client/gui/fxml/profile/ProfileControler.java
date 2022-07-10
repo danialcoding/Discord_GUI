@@ -71,7 +71,32 @@ public class ProfileControler implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        edit_username_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,blackButtonHover);
+        edit_username_button.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET,blackButtonExitHover);
 
+        edit_email_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,blackButtonHover);
+        edit_email_button.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET,blackButtonExitHover);
+
+        edit_phone_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,blackButtonHover);
+        edit_phone_button.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET,blackButtonExitHover);
+
+        edit_user_profile_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,blueButtonHover);
+        edit_user_profile_button.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET,blueButtonExitHover);
+
+        change_password_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,blueButtonHover);
+        change_password_button.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET,blueButtonExitHover);
+
+        logout_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,redButtonHover);
+        logout_button.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET,redButtonExitHover);
+
+        esc_button.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET,redButtonHover);
+        esc_button.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET,redButtonExitHover);
+
+        clickEditUserName();
+        clickEditEmail();
+        clickEditPhone();
+        clickEditPass();
+        logOut();
     }
 
     public void setData(Stage prevStage, GraphicalInterface graphicalInterface) {
@@ -184,8 +209,6 @@ public class ProfileControler implements Initializable {
         btn.setStyle("-fx-background-color: #4f545c; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-radius: 5; -fx-text-fill: #ffffff;");
     }
 
-
-
     EventHandler<MouseEvent> blueButtonHover = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
@@ -244,7 +267,50 @@ public class ProfileControler implements Initializable {
     //clicks
 
 
-    
+    public void clickEditUserName() {
+        edit_username_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+    }
+
+    public void clickEditEmail() {
+        edit_email_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+    }
+
+    public void clickEditPhone() {
+        edit_phone_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+    }
+
+    public void clickEditPass() {
+        change_password_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+    }
+
+    public void logOut() {
+        logout_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+    }
 
 
 }

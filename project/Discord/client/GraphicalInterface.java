@@ -588,4 +588,32 @@ public class GraphicalInterface {
         }
     }
 
+
+
+    public void changeUserName(String userName) {
+
+    }
+
+    public void changeEmail() {
+
+    }
+
+    public void changePhoneNumber() {
+
+    }
+
+    public void changePassword() {
+
+    }
+
+    public void changePhoto() {
+
+    }
+
+    public void logOut() {
+
+    }
+
+
+
 }
