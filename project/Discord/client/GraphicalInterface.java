@@ -609,6 +609,8 @@ public class GraphicalInterface {
 
 
     public void changeUserName(String userName) {
+        userName = userName.toLowerCase();
+
         Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-username");
 
         request.addContent("username",userName);

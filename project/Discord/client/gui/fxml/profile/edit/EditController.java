@@ -1,5 +1,7 @@
 package project.Discord.client.gui.fxml.profile.edit;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,9 +13,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import project.Discord.client.GraphicalInterface;
 import project.Discord.client.InputStatus;
 import project.Discord.client.gui.fxml.profile.ProfileControler;
+import project.Discord.networkPortocol.ObjectRequested;
+import project.Discord.networkPortocol.Request;
+import project.Discord.networkPortocol.RequestType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -176,14 +182,21 @@ public class EditController implements Initializable {
                     label_text.setFill(Color.rgb(154, 154, 154));
                 }
 
+                graphicalInterface.loadUser().setUserName(userName);
+
                 graphicalInterface.changeUserName(userName);
 
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
+                /*Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),
+                    actionEvent -> {
+                        System.out.println("load prof...");
                         pc.loadProfile();
                     }
-                });
+                ));
+                timeline.setCycleCount(10);
+                timeline.play();
+                */
+
+                pc.loadProfile();
 
                 Stage stage = (Stage) done_button.getScene().getWindow();
                 stage.close();
@@ -225,6 +238,8 @@ public class EditController implements Initializable {
                     label_text.setFill(Color.rgb(154, 154, 154));
                 }
 
+                graphicalInterface.loadUser().setEmail(email);
+
                 graphicalInterface.changeEmail(email);
 
                 pc.loadProfile();
@@ -262,6 +277,8 @@ public class EditController implements Initializable {
                     label_text.setText("PHONE NUMBER");
                     label_text.setFill(Color.rgb(154, 154, 154));
                 }
+
+                graphicalInterface.loadUser().setPhoneNumber(phoneNumber);
 
                 graphicalInterface.changePhoneNumber(phoneNumber);
 

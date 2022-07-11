@@ -1493,9 +1493,7 @@ public class ClientServices {
      * set new username for user
      */
     public void changeUserName(String userName) {
-        User user = controller.getUser();
-
-        user.setUserName(userName);
+        controller.getUser().setUserName(userName);
     }
 
     /**

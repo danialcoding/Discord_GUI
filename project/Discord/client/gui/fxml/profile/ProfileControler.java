@@ -1,5 +1,8 @@
 package project.Discord.client.gui.fxml.profile;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import project.Discord.client.GraphicalInterface;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
 import project.Discord.client.gui.fxml.profile.edit.EditController;
@@ -34,6 +38,8 @@ public class ProfileControler implements Initializable {
     private GraphicalInterface graphicalInterface;
 
     private Stage prevStage;
+
+    private User user;
 
     @FXML
     private Button esc_button;
@@ -74,6 +80,9 @@ public class ProfileControler implements Initializable {
     @FXML
     private Button logout_button;
 
+    public Text getUsername_text() {
+        return username_text;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -111,6 +120,29 @@ public class ProfileControler implements Initializable {
     }
 
     public void loadProfile() {
+        User user = graphicalInterface.loadUser();
+
+        profile_username_text.setText(user.getUserName());
+
+        username_text.setText(user.getUserName());
+
+        email_text.setText(user.getEmail());
+
+        if(user.getPhoneNumber().equals("")) {
+            phone_text.setText("You haven't added a phone number yet.");
+
+            edit_phone_button.setText("Add");
+        }
+        else {
+            phone_text.setText(user.getPhoneNumber());
+
+            edit_phone_button.setText("Edit");
+        }
+
+        setPhoto(user);
+    }
+
+    public void updateProfile() {
         User user = graphicalInterface.loadUser();
 
         profile_username_text.setText(user.getUserName());
