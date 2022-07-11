@@ -154,7 +154,7 @@ public class ProfileControler implements Initializable {
 
                 BufferedImage bImage2 = ImageIO.read(bis);
 
-                ImageIO.write(bImage2, "jpg",new File(String.valueOf(RunGUI.class.getResource("photo/user/" + 0))));
+                ImageIO.write(bImage2, ".jpg",new File(String.valueOf(RunGUI.class.getResource("photo/user/" + 0))));
             }
             catch (IOException e) {
                 e.printStackTrace();
