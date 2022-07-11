@@ -3,10 +3,12 @@ package project.Discord.client.gui.fxml.profile;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,14 +17,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import project.Discord.client.GraphicalInterface;
+import project.Discord.client.gui.fxml.login.LoginController;
+import project.Discord.client.gui.fxml.menu.MenuController;
+import project.Discord.client.gui.fxml.menu.home_menu.HomeMenuController;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
 import project.Discord.client.gui.fxml.profile.edit.EditController;
 import project.Discord.client.gui.fxml.profile.edit_pass.EditPasswordController;
+import project.Discord.server.entity.DiscordServer;
 import project.Discord.server.entity.User;
 
 import javax.imageio.ImageIO;
@@ -32,15 +39,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProfileControler implements Initializable {
 
     private GraphicalInterface graphicalInterface;
-
-    private Stage prevStage;
-
-    private User user;
 
     @FXML
     private Button esc_button;
@@ -113,11 +117,12 @@ public class ProfileControler implements Initializable {
         clickEditPhone();
         clickEditPass();
         logOut();
+        clickESC();
+        clickEditProfileButton();
     }
 
-    public void setData(Stage prevStage,GraphicalInterface graphicalInterface) {
+    public void setData(GraphicalInterface graphicalInterface) {
         this.graphicalInterface = graphicalInterface;
-        this.prevStage = prevStage;
     }
 
     public void loadProfile() {
@@ -443,10 +448,88 @@ public class ProfileControler implements Initializable {
     }
 
     public void logOut() {
-        logout_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        logout_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                graphicalInterface.logOut();
+
+                Parent root = null;
+
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"));
+
+                    root = fxmlLoader.load();
+
+                    LoginController loginController = fxmlLoader.getController();
+
+                    loginController.setData(graphicalInterface);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+                Scene scene = new Scene(root);
+
+                stage.setScene(scene);
+
+                stage.show();
+            }
+        });
+    }
+
+    public void clickESC() {
+        esc_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                graphicalInterface.logOut();
+
+                Parent root = null;
+
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(MenuController.class.getResource("menu.fxml"));
+
+                    root = fxmlLoader.load();
+
+                    MenuController mc = fxmlLoader.getController();
+
+                    mc.setData(graphicalInterface);
+
+                    mc.setData(graphicalInterface);
+
+                    ArrayList<DiscordServer> servers  = graphicalInterface.loadServers();
+
+                    mc.setPageInformations(servers);
+
+                    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+                    Scene scene = new Scene(root);
+
+                    stage.setScene(scene);
+
+                    stage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void clickEditProfileButton() {
+        edit_user_profile_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                FileChooser fileChooser = new FileChooser();
 
+                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("jpg Files","*.jpg"));
+
+                File file = fileChooser.showOpenDialog(null);
+
+                if(file != null) {
+
+                }
             }
         });
     }

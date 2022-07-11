@@ -659,10 +659,14 @@ public class GraphicalInterface {
 
     }
 
+    /**
+     * @Author danial
+     * close app method for close socket
+     */
     public void logOut() {
+        Request request = new Request(RequestType.UPDATE,ObjectRequested.SERVER,"server/logOut");
 
+        sendRequest(request);
     }
-
-
 
 }

@@ -167,7 +167,6 @@ public class HomeMenuController implements Initializable {
     }
 
     public void setUserData(User user) {
-
         username_text.setText(user.getUserName());
 
         if(user.getHavePhoto()) {
@@ -383,13 +382,13 @@ public class HomeMenuController implements Initializable {
 
                     ProfileControler profileControler = fxmlLoader.getController();
 
+                    profileControler.setData(graphicalInterface);
+
                     Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
                     Scene scene = new Scene(root);
 
                     stage.setScene(scene);
-
-                    profileControler.setData(stage,graphicalInterface);
 
                     profileControler.loadProfile();
 
