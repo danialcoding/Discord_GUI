@@ -135,6 +135,8 @@ public class RequestController implements Runnable {
                 case "user/get-selected-user" -> clientServices.getSelectedUser(r.getContent().get("username"));
 
                 case "user/check-exist-create-privateChat-with-userName" -> clientServices.checkExistPrivateChatWithUserName(r.getContent().get("username"));
+
+                case "user/get-photo" -> clientServices.getUserPhoto(r.getContent().get("username"));
             }
 
         } else if (objectRequested == ObjectRequested.SERVER) {
@@ -293,6 +295,8 @@ public class RequestController implements Runnable {
                 case "user/unblock-friend" -> clientServices.unblockFriend(Integer.parseInt(r.getContent().get("index")));
 
                 case "user/change-username" -> clientServices.changeUserName(r.getContent().get("username"));
+
+                case "user/change-profile-photo" -> clientServices.updateUserPhoto(r.getFile());
             }
         }
         else if(objectRequested == ObjectRequested.CHAT) {

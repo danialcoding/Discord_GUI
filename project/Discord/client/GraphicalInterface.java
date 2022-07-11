@@ -655,8 +655,12 @@ public class GraphicalInterface {
         return InputStatus.Successful;
     }
 
-    public void changePhoto() {
+    public void changePhoto(byte[] data) {
+        Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-profile-photo");
 
+        request.setFile(data);
+
+        sendRequest(request);
     }
 
     /**
@@ -668,5 +672,22 @@ public class GraphicalInterface {
 
         sendRequest(request);
     }
+
+    public byte[] getUserPhoto(String userName) {
+        Request request = new Request(RequestType.GET,ObjectRequested.USER,"user/get-photo");
+
+        request.addContent("username",userName);
+
+        sendRequest(request);
+
+        /*user = loadUser();
+
+        if(user != null && userName.equals(user.getUserName())) {
+            user.setUserPhoto(responseHandler.getResponse().getFile());
+        }*/
+
+        return responseHandler.getResponse().getFile();
+    }
+
 
 }

@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import project.Discord.client.GraphicalInterface;
+import project.Discord.client.gui.RunGUI;
 import project.Discord.client.gui.fxml.login.LoginController;
 import project.Discord.client.gui.fxml.menu.MenuController;
 import project.Discord.client.gui.fxml.menu.home_menu.HomeMenuController;
@@ -33,11 +34,9 @@ import project.Discord.server.entity.DiscordServer;
 import project.Discord.server.entity.User;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -148,46 +147,24 @@ public class ProfileControler implements Initializable {
         setPhoto(user);
     }
 
-    public void updateProfile() {
-        User user = graphicalInterface.loadUser();
-
-        profile_username_text.setText(user.getUserName());
-
-        username_text.setText(user.getUserName());
-
-        email_text.setText(user.getEmail());
-
-        if(user.getPhoneNumber().equals("")) {
-            phone_text.setText("You haven't added a phone number yet.");
-
-            edit_phone_button.setText("Add");
-        }
-        else {
-            phone_text.setText(user.getPhoneNumber());
-
-            edit_phone_button.setText("Edit");
-        }
-
-        setPhoto(user);
-    }
-
     public void setPhoto(User user) {
         if(user.getHavePhoto()) {
-
             try {
-                ByteArrayInputStream bis = new ByteArrayInputStream(user.getUserPhoto());
+                ByteArrayInputStream bis = new ByteArrayInputStream(graphicalInterface.getUserPhoto(user.getUserName()));
 
                 BufferedImage bImage2 = ImageIO.read(bis);
 
-                ImageIO.write(bImage2, "jpg", new File("project/Discord/client/gui/photo/user/" + 0 + ".jpg"));
+                ImageIO.write(bImage2, "jpg",new File(String.valueOf(RunGUI.class.getResource("photo/user/" + 0))));
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
 
-            Image img = new Image("project/Discord/client/gui/photo/user/" + 0 + ".jpg");
+            Image img = new Image(String.valueOf(RunGUI.class.getResource("photo/user/" + 0 + ".jpg")));
 
             profile_photo_circle.setFill(new ImagePattern(img));
+
+            profile_photo_circle.setRadius(55);
         }
         else {
             InputStream stream = getClass().getResourceAsStream("/project/Discord/client/gui/icons/discord_icon.png");
@@ -527,9 +504,25 @@ public class ProfileControler implements Initializable {
 
                 File file = fileChooser.showOpenDialog(null);
 
+                byte [] data = null;
+                BufferedImage bImage = null;
                 if(file != null) {
-
+                    try {
+                        bImage = ImageIO.read(file);
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                        ImageIO.write(bImage, "jpg", bos );
+                        data = bos.toByteArray();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+                graphicalInterface.loadUser().setUserPhoto(data);
+
+                graphicalInterface.loadUser().setHavePhoto(true);
+
+                graphicalInterface.changePhoto(data);
+
+                loadProfile();
             }
         });
     }

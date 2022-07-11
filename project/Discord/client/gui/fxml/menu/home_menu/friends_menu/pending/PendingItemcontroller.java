@@ -10,6 +10,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import project.Discord.client.GraphicalInterface;
+import project.Discord.client.gui.RunGUI;
 import project.Discord.server.entity.User;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -181,13 +182,13 @@ public class PendingItemcontroller implements Initializable {
 
                 BufferedImage bImage2 = ImageIO.read(bis);
 
-                ImageIO.write(bImage2, "jpg", new File("project/Discord/client/gui/photo/user/" + 0 + ".jpg"));
+                ImageIO.write(bImage2, "jpg", new File(String.valueOf(RunGUI.class.getResource("photo/user/" + 0))));
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
 
-            Image img = new Image("project/Discord/client/gui/photo/user/" + 0 + ".jpg");
+            Image img = new Image(String.valueOf(RunGUI.class.getResource("photo/user/" + 0 + ".jpg")));
 
             profile_photo_circle.setFill(new ImagePattern(img));
         }

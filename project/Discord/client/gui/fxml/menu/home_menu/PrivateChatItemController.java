@@ -77,7 +77,7 @@ public class PrivateChatItemController implements Initializable {
 
                 BufferedImage bImage2 = ImageIO.read(bis);
 
-                ImageIO.write(bImage2, "jpg", new File("project/Discord/client/gui/photo/user/" + 0 + ".jpg"));
+                ImageIO.write(bImage2, "jpg", new File("project/Discord/client/gui/photo/user/" + 0));
             }
             catch (IOException e) {
                 e.printStackTrace();

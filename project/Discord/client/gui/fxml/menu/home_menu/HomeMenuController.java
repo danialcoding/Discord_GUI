@@ -169,22 +169,30 @@ public class HomeMenuController implements Initializable {
     public void setUserData(User user) {
         username_text.setText(user.getUserName());
 
+
+
         if(user.getHavePhoto()) {
 
             try {
-                ByteArrayInputStream bis = new ByteArrayInputStream(user.getUserPhoto());
+                byte[] data = graphicalInterface.getUserPhoto(user.getUserName());
+
+                ByteArrayInputStream bis = new ByteArrayInputStream(data);
+
+                graphicalInterface.loadUser().setUserPhoto(data);
 
                 BufferedImage bImage2 = ImageIO.read(bis);
 
-                ImageIO.write(bImage2, "jpg", new File("project/Discord/client/gui/photo/user/" + 0 + ".jpg"));
+                ImageIO.write(bImage2, "jpg", new File(String.valueOf(RunGUI.class.getResource("photo/user/" + 0))));
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
 
-            Image img = new Image("project/Discord/client/gui/photo/user/" + 0 + ".jpg");
+            Image img = new Image(String.valueOf(RunGUI.class.getResource("/project/Discord/client/gui/photo/user/" + 0 + ".jpg")));
 
             user_profile_circle.setFill(new ImagePattern(img));
+
+            user_profile_circle.setRadius(25);
         }
         else {
             InputStream stream = getClass().getResourceAsStream("/project/Discord/client/gui/icons/discord_icon.png");

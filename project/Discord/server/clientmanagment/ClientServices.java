@@ -329,6 +329,37 @@ public class ClientServices {
 
     /**
      * @Author danial
+     * @param  data
+     * update User Photo
+     */
+    public void updateUserPhoto(byte[] data) {
+        controller.getUser().setUserPhoto(data);
+
+        controller.getUser().setHavePhoto(true);
+    }
+
+    /**
+     * @Author danial
+     * @param  data
+     * get User Photo
+     */
+    public void getUserPhoto(String userName) {
+        Response response = new Response();
+
+        User user = searchUser(userName);
+
+        if(user.getHavePhoto()) {
+            response.setFile(user.getUserPhoto());
+        }
+        else {
+            response.setFile(null);
+        }
+
+        controller.sendResponse(response);
+    }
+
+    /**
+     * @Author danial
      * @param  indexOfFriend
      * unblock Friend with index
      */
