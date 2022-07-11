@@ -2,15 +2,22 @@ package project.Discord.client.gui.fxml.profile;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import project.Discord.client.GraphicalInterface;
+import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
+import project.Discord.client.gui.fxml.profile.edit.EditController;
 import project.Discord.server.entity.User;
 
 import javax.imageio.ImageIO;
@@ -24,10 +31,9 @@ import java.util.ResourceBundle;
 
 public class ProfileControler implements Initializable {
 
-    private Stage prevStage;
-
     private GraphicalInterface graphicalInterface;
 
+    private Stage prevStage;
 
     @FXML
     private Button esc_button;
@@ -99,7 +105,7 @@ public class ProfileControler implements Initializable {
         logOut();
     }
 
-    public void setData(Stage prevStage, GraphicalInterface graphicalInterface) {
+    public void setData(Stage prevStage,GraphicalInterface graphicalInterface) {
         this.graphicalInterface = graphicalInterface;
         this.prevStage = prevStage;
     }
@@ -154,7 +160,7 @@ public class ProfileControler implements Initializable {
 
             profile_photo_circle.setFill(imagePattern);
 
-            profile_photo_circle.setRadius(20);
+            profile_photo_circle.setRadius(40);
         }
 
         String address = "";
@@ -186,19 +192,19 @@ public class ProfileControler implements Initializable {
     }
 
     public void blueButtonHover(Button btn) {
-        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #3b44a9; -fx-alignment: right; -fx-text-fill: #ffffff;");
+        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #3b44a9; -fx-text-fill: #ffffff;");
     }
 
     public void blueButtonExitHover(Button btn) {
-        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #5865f2; -fx-alignment: right; -fx-text-fill: #ffffff;");
+        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #5865f2; -fx-text-fill: #ffffff;");
     }
 
     public void redButtonHover(Button btn) {
-        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #9a292b; -fx-alignment: right; -fx-text-fill: #ffffff;");
+        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #9a292b; -fx-text-fill: #ffffff;");
     }
 
     public void redButtonExitHover(Button btn) {
-        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #d83c3e; -fx-alignment: right; -fx-text-fill: #ffffff;");
+        btn.setStyle("-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #d83c3e; -fx-text-fill: #ffffff;");
     }
 
     public void blackButtonHover(Button btn) {
@@ -271,7 +277,32 @@ public class ProfileControler implements Initializable {
         edit_username_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                FXMLLoader fxmlLoader = new FXMLLoader(EditController.class.getResource("edit.fxml"));
 
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                EditController ec = fxmlLoader.getController();
+
+                ec.setData(graphicalInterface,edit_username_button.getId(), ProfileControler.this);
+
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.initModality(Modality.WINDOW_MODAL);
+
+                stage.setResizable(false);
+
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.setScene(scene);
+
+                stage.show();
             }
         });
     }
@@ -280,7 +311,32 @@ public class ProfileControler implements Initializable {
         edit_email_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                FXMLLoader fxmlLoader = new FXMLLoader(EditController.class.getResource("edit.fxml"));
 
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                EditController ec = fxmlLoader.getController();
+
+                ec.setData(graphicalInterface,edit_email_button.getId(), ProfileControler.this);
+
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.initModality(Modality.WINDOW_MODAL);
+
+                stage.setResizable(false);
+
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.setScene(scene);
+
+                stage.show();
             }
         });
     }
@@ -289,7 +345,32 @@ public class ProfileControler implements Initializable {
         edit_phone_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                FXMLLoader fxmlLoader = new FXMLLoader(EditController.class.getResource("edit.fxml"));
 
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                EditController ec = fxmlLoader.getController();
+
+                ec.setData(graphicalInterface,edit_phone_button.getId(), ProfileControler.this);
+
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.initModality(Modality.WINDOW_MODAL);
+
+                stage.setResizable(false);
+
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.setScene(scene);
+
+                stage.show();
             }
         });
     }

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: #36393f;" stylesheets="@profile.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: #36393f;" stylesheets="@profile.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Discord.client.gui.fxml.profile.ProfileControler">
     <children>
         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="800.0" prefWidth="300.0" style="-fx-background-color: #2f3136;">
             <content>
@@ -65,17 +65,17 @@
                                             <children>
                                                 <HBox prefHeight="200.0" prefWidth="658.0" style="-fx-alignment: center-left;">
                                                     <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="150.0">
+                                          <AnchorPane prefHeight="200.0" prefWidth="130.0">
                                              <children>
-                                                <Circle fill="#3ba55c" layoutX="64.0" layoutY="106.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                                                <Circle fx:id="profile_photo_circle" fill="DODGERBLUE" layoutX="64.0" layoutY="106.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                                                <Circle fill="#3ba55c" layoutX="64.0" layoutY="106.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                                                <Circle fx:id="profile_photo_circle" fill="DODGERBLUE" layoutX="64.0" layoutY="106.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                                                 <Circle fill="#202225" layoutX="101.0" layoutY="150.0" radius="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                                                 <Circle fx:id="status_circle" fill="#00ff2f" layoutX="101.0" layoutY="150.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                                              </children>
                                           </AnchorPane>
                                                         <Text fx:id="profile_username_text" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 24;" text="USERNAME">
                                                             <HBox.margin>
-                                                                <Insets left="25.0" top="10.0" />
+                                                                <Insets left="5.0" top="10.0" />
                                                             </HBox.margin>
                                                         </Text>
                                                     </children>
@@ -85,7 +85,7 @@
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: center-right;">
                                                     <children>
-                                                        <Button fx:id="edit_user_profile_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #5865f2; -fx-alignment: right; -fx-text-fill: #ffffff;" text="Edit User Profile">
+                                                        <Button fx:id="edit_user_profile_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #5865f2; -fx-text-fill: #ffffff;" text="Edit User Profile">
                                                             <HBox.margin>
                                                                 <Insets />
                                                             </HBox.margin>
@@ -188,7 +188,7 @@
                                                 <Insets />
                                             </VBox.margin>
                                         </Text>
-                                        <Button fx:id="change_password_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #5865f2; -fx-alignment: right; -fx-text-fill: #ffffff;" text="Change Password">
+                                        <Button fx:id="change_password_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #5865f2; -fx-text-fill: #ffffff;" text="Change Password">
                                             <VBox.margin>
                                                 <Insets bottom="25.0" top="20.0" />
                                             </VBox.margin>
@@ -201,7 +201,7 @@
                                 <VBox layoutX="10.0" layoutY="728.0" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 27; -fx-font-weight: bold;" text="Log Out" />
-                                        <Button fx:id="logout_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #d83c3e; -fx-alignment: right; -fx-text-fill: #ffffff;" text="Log Out">
+                                        <Button fx:id="logout_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-radius: 4; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #d83c3e; -fx-text-fill: #ffffff;" text="Log Out">
                                             <VBox.margin>
                                                 <Insets bottom="25.0" top="20.0" />
                                             </VBox.margin>

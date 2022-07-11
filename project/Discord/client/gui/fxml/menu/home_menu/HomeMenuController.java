@@ -86,6 +86,8 @@ public class HomeMenuController implements Initializable {
         exitFriendsMenuButton();
 
         openFriendsMenu();
+
+        openUserSetting();
     }
 
     public void openFriendsMenu() {
@@ -375,26 +377,27 @@ public class HomeMenuController implements Initializable {
             public void handle(Event event) {
                 Parent root = null;
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(RunGUI.class.getResource("/fxml/profile/profile.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(ProfileControler.class.getResource("profile.fxml"));
 
                     root = fxmlLoader.load();
 
                     ProfileControler profileControler = fxmlLoader.getController();
 
-                    //profileControler.setData(graphicalInterface);
+                    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
+                    Scene scene = new Scene(root);
+
+                    stage.setScene(scene);
+
+                    profileControler.setData(stage,graphicalInterface);
+
+                    profileControler.loadProfile();
+
+                    stage.show();
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-                Scene scene = new Scene(root);
-
-                stage.setScene(scene);
-
-                stage.show();
             }
         });
     }

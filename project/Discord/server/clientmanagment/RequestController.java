@@ -291,6 +291,8 @@ public class RequestController implements Runnable {
                 case "user/block-friend" -> clientServices.blockUser(Integer.parseInt(r.getContent().get("index")));
 
                 case "user/unblock-friend" -> clientServices.unblockFriend(Integer.parseInt(r.getContent().get("index")));
+
+                case "user/change-username" -> clientServices.changeUserName(r.getContent().get("username"));
             }
         }
         else if(objectRequested == ObjectRequested.CHAT) {

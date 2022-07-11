@@ -142,6 +142,10 @@ public class User implements Serializable {
         return havePhoto;
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public void setChats(ArrayList<PrivateChat> chats) {
         for (PrivateChat PC:chats) {
 

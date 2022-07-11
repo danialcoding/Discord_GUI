@@ -1489,6 +1489,17 @@ public class ClientServices {
 
     /**
      * @Author danial
+     * @param  mail
+     * set new username for user
+     */
+    public void changeUserName(String userName) {
+        User user = controller.getUser();
+
+        user.setUserName(userName);
+    }
+
+    /**
+     * @Author danial
      * @param phoneNumber
      * set new phonenumber for user
      */

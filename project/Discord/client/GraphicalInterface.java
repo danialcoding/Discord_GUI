@@ -258,6 +258,24 @@ public class GraphicalInterface {
         return InputStatus.Successful;
     }
 
+    /**
+     * @Author danial
+     * @param  String
+     * @return
+     * check phone number string
+     */
+    public InputStatus phoneChecker(String phoneNumber) {
+        String phoneRegex = "(0/91)?[7-9][0-9]{9}";
+        Pattern phonePattern = Pattern.compile(phoneRegex);
+
+        if(!phonePattern.matcher(phoneNumber).matches()){
+            return InputStatus.FormatError;
+        }
+        else {
+            return InputStatus.Successful;
+        }
+    }
+
 
     /**
      * @Author danial
@@ -591,19 +609,58 @@ public class GraphicalInterface {
 
 
     public void changeUserName(String userName) {
+        Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-username");
 
+        request.addContent("username",userName);
+
+        sendRequest(request);
     }
 
-    public void changeEmail() {
+    public void changeEmail(String email) {
+        Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-mail");
 
+        request.addContent("mail",email);
+
+        sendRequest(request);
     }
 
-    public void changePhoneNumber() {
+    public void changePhoneNumber(String phoneNumber) {
+        Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-phonenumber");
 
+        request.addContent("phonenumber",phoneNumber);
+
+        sendRequest(request);
     }
 
     public void changePassword() {
+       /* Flag flag;
+        do {
+            System.out.println("Type old password: ");
 
+            String oldPass = scanner.nextLine();
+
+            Request request = new Request(RequestType.GET, ObjectRequested.USER, "user/check-old-password");
+
+            request.addContent("oldPass",oldPass);
+
+            sendRequest(request);
+
+            showResponse();
+
+            flag = responseHandler.getFlag();
+
+        } while (flag == Flag.NotSuccessful);
+
+
+        String newPass = passwordChecker();
+
+        Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-password");
+
+        request.addContent("password",newPass);
+
+        sendRequest(request);
+
+        showResponse();*/
     }
 
     public void changePhoto() {
