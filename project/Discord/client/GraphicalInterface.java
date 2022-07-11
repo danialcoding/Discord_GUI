@@ -634,35 +634,25 @@ public class GraphicalInterface {
         sendRequest(request);
     }
 
-    public void changePassword() {
-       /* Flag flag;
-        do {
-            System.out.println("Type old password: ");
+    public InputStatus changePassword(String password,String oldPassword) {
+        Request request = new Request(RequestType.GET, ObjectRequested.USER, "user/check-old-password");
 
-            String oldPass = scanner.nextLine();
-
-            Request request = new Request(RequestType.GET, ObjectRequested.USER, "user/check-old-password");
-
-            request.addContent("oldPass",oldPass);
-
-            sendRequest(request);
-
-            showResponse();
-
-            flag = responseHandler.getFlag();
-
-        } while (flag == Flag.NotSuccessful);
-
-
-        String newPass = passwordChecker();
-
-        Request request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-password");
-
-        request.addContent("password",newPass);
+        request.addContent("oldPass",oldPassword);
 
         sendRequest(request);
 
-        showResponse();*/
+        Flag flag = responseHandler.getFlag();
+
+        if(flag == Flag.NotSuccessful) {
+            return InputStatus.NotSuccessful;
+        }
+        request = new Request(RequestType.UPDATE,ObjectRequested.USER,"user/change-password");
+
+        request.addContent("password",password);
+
+        sendRequest(request);
+
+        return InputStatus.Successful;
     }
 
     public void changePhoto() {

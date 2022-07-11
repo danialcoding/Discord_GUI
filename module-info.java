@@ -16,7 +16,7 @@ module p {
     opens project.Discord.client.gui.fxml.menu.servers_menu;
     opens project.Discord.client.gui.fxml.profile;
     opens project.Discord.client.gui.fxml.profile.edit;
-    //opens project.Discord.client.gui.fxml.profile.edit_pass;
+    opens project.Discord.client.gui.fxml.profile.edit_pass;
     opens project.Discord.client.gui;
     opens project.Discord.client.gui.fxml.singup;
     opens project.Discord.client.gui.fxml.login;

@@ -22,6 +22,7 @@ import javafx.util.Duration;
 import project.Discord.client.GraphicalInterface;
 import project.Discord.client.gui.fxml.menu.home_menu.friends_menu.add_friend.AddFriendController;
 import project.Discord.client.gui.fxml.profile.edit.EditController;
+import project.Discord.client.gui.fxml.profile.edit_pass.EditPasswordController;
 import project.Discord.server.entity.User;
 
 import javax.imageio.ImageIO;
@@ -411,7 +412,32 @@ public class ProfileControler implements Initializable {
         change_password_button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                FXMLLoader fxmlLoader = new FXMLLoader(EditPasswordController.class.getResource("edit_password.fxml"));
 
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                EditPasswordController epc = fxmlLoader.getController();
+
+                epc.setData(graphicalInterface,edit_phone_button.getId(), ProfileControler.this);
+
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.initModality(Modality.WINDOW_MODAL);
+
+                stage.setResizable(false);
+
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.setScene(scene);
+
+                stage.show();
             }
         });
     }
